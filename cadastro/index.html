@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta name="theme-color" content="#000">
+    <link rel="manifest" href="/manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Afilie-se ao Sorteio Infância Conectada">
+    <title>Afilie-se | Sorteio Infância Conectada</title>
+    <link rel="stylesheet" href="styles-afiliado.css">
+    <script src="validacao.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Header -->
+            <div class="header">
+                <img class="logo" src="../../images/logo-infancia-conectada.png" alt="Logo raposa Infância Conectada">
+                <h1>Afilie-se ao projeto Infância Conectada</h1>
+                <p class="subtitle">Cadastre-se como afiliado</p>
+            </div>
+            <!-- Formulário -->
+            <form id="cadastroForm" novalidate>
+                <!-- Nome -->
+                <div class="input-group">
+                    <label for="nome">Nome completo <span class="required">*</span></label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required
+                        minlength="3" maxlength="100" autocomplete="name" aria-describedby="nome-error">
+                    <span id="nome-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="input-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu email" required minlength="3"
+                        maxlength="100" autocomplete="email" aria-describedby="email-error">
+                    <span id="email-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Telefone -->
+                <div class="input-group">
+                    <label for="telefone">Telefone <span class="required">*</span></label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required
+                        maxlength="15" autocomplete="tel" aria-describedby="telefone-error">
+                    <span id="telefone-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Senha -->
+                <div class="input-group">
+                    <label for="senha">Senha <span class="required">*</span></label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite uma senha" required minlength="6"
+                        maxlength="100" autocomplete="new-password" aria-describedby="senha-error">
+                    <span id="senha-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Confirmar senha -->
+                <div class="input-group">
+                    <label for="confirmarsenha">Confirmar senha <span class="required">*</span></label>
+                    <input type="password" id="confirmarsenha" name="confirmarsenha" placeholder="Confirme a senha"
+                        required minlength="6" maxlength="100" autocomplete="new-password"
+                        aria-describedby="confirmarsenha-error">
+                    <span id="confirmarsenha-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Botão Enviar -->
+                <button type="submit" id="btnParticipar" class="btn-primary">
+                    <span class="btn-text">Cadastrar como Afiliado</span>
+                    <span class="btn-loader"></span>
+                </button>
+
+                <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+            </form>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p class="info-text">
+                    <span class="icon">🔒</span>
+                    Seus dados estão seguros conosco
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta name="theme-color" content="#000">
+    <link rel="manifest" href="/manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login de afiliado - Sorteio Infância Conectada">
+    <title>Login Afiliado | Sorteio Infância Conectada</title>
+    <link rel="stylesheet" href="styles-afiliado-login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Header -->
+            <div class="header">
+                <img class="logo" src="../images/logo-infancia-conectada.png" alt="Logo raposa Infância Conectada">
+                <h1>Login de Afiliado <br> Infância Conectada</h1>
+                <p class="subtitle">Entrar no Painel de Afiliado</p>
+            </div>
+            <!-- Formulário -->
+            <form id="cadastroForm" novalidate>
+                <!-- Email -->
+                <div class="input-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu email" required minlength="3"
+                        maxlength="100" autocomplete="email" aria-describedby="email-error">
+                    <span id="email-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Senha -->
+                <div class="input-group">
+                    <label for="senha">Senha <span class="required">*</span></label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required minlength="6"
+                        maxlength="100" autocomplete="new-password" aria-describedby="senha-error">
+                    <span id="senha-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Botão Enviar -->
+                <button type="submit" id="btnParticipar" class="btn-primary">
+                    <span class="btn-text">Login</span>
+                    <span class="btn-loader"></span>
+                </button>
+
+
+                <a href="https://infanciaconectada.com.br/afiliados/cadastro/">
+                    <button type="button" class="btn-secundary">
+                        <span class="btn-text">Cadastrar como Afiliado</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </a>
+
+                <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+            </form>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p class="info-text">
+                    <span class="icon">🔒</span>
+                    Seus dados estão seguros conosco
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

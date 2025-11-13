@@ -1,0 +1,451 @@
+/* ========================================
+IMPORTAÇÃO DE FONTES
+======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ========================================
+VARIÁVEIS CSS
+======================================== */
+:root {
+    --primary: #00d4ff;
+    --primary-hover: #00bde6;
+    --primary-dark: #0099cc;
+    --success: #00ff88;
+    --error: #ff4757;
+    --warning: #ffa502;
+
+    --bg-dark: #0b0f17;
+    --bg-gradient-start: #00111a;
+    --bg-gradient-end: #000;
+
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-hover: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --text-muted: #718096;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+}
+
+/* ========================================
+RESET E BASE
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+CONTAINER E CARD
+======================================== */
+.container {
+    width: 100%;
+    max-width: 480px;
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card {
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+}
+
+/* ========================================
+HEADER
+======================================== */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    width: 80px;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--primary), #00ff88);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ========================================
+FORMULÁRIO
+======================================== */
+#cadastroForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ========================================
+INPUT GROUPS
+======================================== */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.required {
+    color: var(--error);
+    font-weight: 600;
+}
+
+/* ========================================
+INPUTS
+======================================== */
+input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+input:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+input.valid {
+    border-color: var(--success);
+}
+
+input.invalid {
+    border-color: var(--error);
+    animation: shake 0.3s ease;
+}
+
+/* ========================================
+MENSAGENS DE ERRO
+======================================== */
+.error-message {
+    font-size: 0.8rem;
+    color: var(--error);
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: -0.25rem;
+}
+
+.error-message.show {
+    display: flex;
+    animation: slideDown 0.3s ease;
+}
+
+/* ========================================
+BOTÃO PRINCIPAL
+======================================== */
+.btn-primary {
+    position: relative;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary.loading .btn-text {
+    opacity: 0;
+}
+
+.btn-primary.loading .btn-loader {
+    display: block;
+}
+
+.btn-primary.success {
+    background: linear-gradient(135deg, var(--success), #00cc70);
+}
+
+/* Loader do Botão */
+.btn-loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+
+.btn-secundary {
+    position: relative;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.btn-secundary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+
+.btn-secundary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secundary.loading .btn-text {
+    opacity: 0;
+}
+
+.btn-secundary.loading .btn-loader {
+    display: block;
+}
+
+.btn-secundary.success {
+    background: linear-gradient(135deg, var(--success), #00cc70);
+}
+
+/* Loader do Botão */
+.btn-loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+/* ========================================
+FEEDBACK GLOBAL
+======================================== */
+.feedback {
+    padding: 0.875rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    animation: slideDown 0.3s ease;
+}
+
+.feedback.success {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: var(--success);
+}
+
+.feedback.error {
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    color: var(--error);
+}
+
+.feedback.hidden {
+    display: none;
+}
+
+/* ========================================
+FOOTER
+======================================== */
+.footer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.info-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.icon {
+    font-size: 1rem;
+}
+
+/* ========================================
+ANIMAÇÕES
+======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ========================================
+RESPONSIVIDADE
+======================================== */
+@media (max-width: 480px) {
+    .card {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    input,
+    .btn-primary {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .card {
+        padding: 1.5rem 1rem;
+    }
+}
