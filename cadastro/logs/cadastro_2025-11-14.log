@@ -1,0 +1,61 @@
+[2025-11-14 23:33:50] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-14 23:33:50] [INFO] Método: POST
+[2025-11-14 23:33:50] [INFO] IP: 192.168.65.1
+[2025-11-14 23:33:50] [INFO] Configurações BD definidas
+[2025-11-14 23:33:50] [INFO] Requisição POST recebida
+[2025-11-14 23:33:50] [INFO] POST data: {"nome":"Rodrigo Inácio da Silva","email":"rodrigo.pedra.lobo@gmail.com","telefone":"(55) 55555-5555","senha":"123456","confirmarsenha":"123456","csrf_token":"0a1b2af4e728148314bcd0442c990d23b16de5dc31d8850adf9f684d07c3ceee"}
+[2025-11-14 23:33:50] [INFO] Token CSRF válido
+[2025-11-14 23:33:50] [INFO] Tentando conectar ao banco: infancia-conectada@localhost
+[2025-11-14 23:33:50] [DEBUG] Usuário: root
+[2025-11-14 23:33:50] [ERROR] EXCEÇÃO CAPTURADA: No such file or directory
+[2025-11-14 23:33:50] [ERROR] Stack trace: #0 /var/www/html/cadastro/processar_cadastro.php(101): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'infancia-conect...')
+#1 {main}
+[2025-11-14 23:33:50] [ERROR] Arquivo: /var/www/html/cadastro/processar_cadastro.php:101
+[2025-11-14 23:33:50] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-14 23:38:22] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-14 23:38:22] [INFO] Método: POST
+[2025-11-14 23:38:22] [INFO] IP: 192.168.65.1
+[2025-11-14 23:38:22] [INFO] Configurações BD definidas
+[2025-11-14 23:38:22] [INFO] Requisição POST recebida
+[2025-11-14 23:38:22] [INFO] POST data: {"nome":"Rodrigo Inacio da silva","email":"projeto@infanciaconectada.com.br","telefone":"(33) 33333-3333","senha":"123456","confirmarsenha":"123456","csrf_token":"0a1b2af4e728148314bcd0442c990d23b16de5dc31d8850adf9f684d07c3ceee"}
+[2025-11-14 23:38:22] [INFO] Token CSRF válido
+[2025-11-14 23:38:22] [INFO] Tentando conectar ao banco: infancia-conectada@localhost
+[2025-11-14 23:38:22] [DEBUG] Usuário: root
+[2025-11-14 23:38:22] [ERROR] EXCEÇÃO CAPTURADA: No such file or directory
+[2025-11-14 23:38:22] [ERROR] Stack trace: #0 /var/www/html/cadastro/processar_cadastro.php(101): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'infancia-conect...')
+#1 {main}
+[2025-11-14 23:38:22] [ERROR] Arquivo: /var/www/html/cadastro/processar_cadastro.php:101
+[2025-11-14 23:38:22] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-14 23:47:15] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-14 23:47:15] [INFO] Método: POST
+[2025-11-14 23:47:15] [INFO] IP: 192.168.65.1
+[2025-11-14 23:47:15] [INFO] Configurações BD definidas
+[2025-11-14 23:47:15] [INFO] Requisição POST recebida
+[2025-11-14 23:47:15] [INFO] POST data: {"nome":"Rodrigo Inácio da Silva","email":"projeto@infanciaconectada.com.br","telefone":"(66) 66666-6666","senha":"123456","confirmarsenha":"123456","csrf_token":"0a1b2af4e728148314bcd0442c990d23b16de5dc31d8850adf9f684d07c3ceee"}
+[2025-11-14 23:47:15] [INFO] Token CSRF válido
+[2025-11-14 23:47:15] [INFO] Tentando conectar ao banco: u583423626_infancia@45.152.46.204:3306
+[2025-11-14 23:47:15] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-14 23:47:15] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-14 23:47:15] [INFO] ✓ Charset UTF-8 definido
+[2025-11-14 23:47:15] [INFO] Verificando se tabela afiliados existe...
+[2025-11-14 23:47:15] [INFO] ✓ Tabela afiliados existe
+[2025-11-14 23:47:15] [INFO] Dados recebidos: nome=Rodrigo Inácio da Silva, email=projeto@infanciaconectada.com.br, telefone=(66) 66666-6666
+[2025-11-14 23:47:15] [INFO] Todas as validações passaram
+[2025-11-14 23:47:15] [INFO] Verificando se email já existe: projeto@infanciaconectada.com.br
+[2025-11-14 23:47:15] [INFO] Executando query de verificação de email...
+[2025-11-14 23:47:15] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-14 23:47:15] [INFO] ✓ Email disponível: projeto@infanciaconectada.com.br
+[2025-11-14 23:47:15] [INFO] Gerando hash de senha com bcrypt
+[2025-11-14 23:47:16] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-14 23:47:16] [INFO] Gerando código único para o afiliado
+[2025-11-14 23:47:16] [INFO] Iniciando geração de código único
+[2025-11-14 23:47:16] [INFO] Código gerado: IC4F9GS0
+[2025-11-14 23:47:16] [INFO] ✓ Código gerado: IC4F9GS0
+[2025-11-14 23:47:16] [INFO] Preparando statement de inserção
+[2025-11-14 23:47:16] [INFO] Bindando parâmetros do INSERT
+[2025-11-14 23:47:16] [INFO] Executando INSERT no banco...
+[2025-11-14 23:47:16] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-14 23:47:16] [INFO] ID do novo afiliado: 1
+[2025-11-14 23:47:16] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=1, CODE=IC4F9GS0, EMAIL=projeto@infanciaconectada.com.br
+[2025-11-14 23:47:16] [INFO] ✓ Conexão ao banco fechada
+[2025-11-14 23:47:16] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===

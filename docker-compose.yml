@@ -9,53 +9,19 @@ services:
       - "80:80"
     volumes:
       - .:/var/www/html
+      - ./cadastro:/var/www/html/cadastro
     environment:
       - PHP_MEMORY_LIMIT=256M
       - PHP_MAX_EXECUTION_TIME=300
-    depends_on:
-      - mysql
     networks:
       - afiliados_network
     restart: unless-stopped
-
-  # Serviço MySQL
-  mysql:
-    image: mysql:8.0
-    container_name: afiliados_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: infancia-conectada
-      MYSQL_USER: afiliados_user
-      MYSQL_PASSWORD: afiliados_password
-      MYSQL_INITDB_SKIP_TZINFO: "yes"
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-      - ./create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
-    networks:
-      - afiliados_network
-    restart: unless-stopped
-
-  # Serviço phpMyAdmin (opcional)
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: afiliados_phpmyadmin
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: root
-    ports:
-      - "8080:80"
-    depends_on:
-      - mysql
-    networks:
-      - afiliados_network
-    restart: unless-stopped
-
-volumes:
-  mysql_data:
-    driver: local
+    command: >
+      bash -c "
+      docker-php-ext-install mysqli pdo pdo_mysql &&
+      a2enmod rewrite &&
+      apache2-foreground
+      "
 
 networks:
   afiliados_network:

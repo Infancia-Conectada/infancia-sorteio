@@ -3,26 +3,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnParticipar = document.getElementById('btnParticipar');
     const feedback = document.getElementById('feedback');
 
+    console.log('✓ DOM carregado e validacao.js ativo');
+
     // Gerar CSRF token se não existir
     if (!document.querySelector('input[name="csrf_token"]')) {
+        console.log('Gerando token CSRF...');
         fetch('gerar_csrf.php')
-            .then(response => response.json())
+            .then(response => {
+                console.log('Resposta CSRF:', response.status);
+                return response.json();
+            })
             .then(data => {
+                console.log('Token CSRF recebido:', data.token);
                 const input = document.createElement('input');
                 input.type = 'hidden';
                 input.name = 'csrf_token';
                 input.value = data.token;
                 form.appendChild(input);
+                console.log('✓ Token CSRF adicionado ao formulário');
+            })
+            .catch(erro => {
+                console.error('Erro ao gerar CSRF:', erro);
+                mostrarErro('Erro ao gerar token de segurança');
             });
     }
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        console.log('Formulário submetido');
 
         // Validação básica no cliente
         if (!validarFormulario()) {
+            console.log('Validação do formulário falhou');
             return;
         }
+
+        console.log('✓ Validação passada, enviando dados...');
 
         // Desabilitar botão e mostrar carregamento
         btnParticipar.disabled = true;
@@ -31,17 +47,28 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Coletar dados do formulário
             const formData = new FormData(form);
+            
+            console.log('Dados enviados:');
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ':', pair[1].substring ? pair[1].substring(0, 20) + '...' : pair[1]);
+            }
 
             // Enviar dados ao servidor
+            console.log('Enviando requisição para processar_cadastro.php...');
             const response = await fetch('processar_cadastro.php', {
                 method: 'POST',
                 body: formData
             });
 
+            console.log('Resposta recebida com status:', response.status);
+            console.log('Headers da resposta:', response.headers.get('content-type'));
+
             const dados = await response.json();
+            console.log('Dados JSON recebidos:', dados);
 
             // Mostrar feedback
             if (response.ok) {
+                console.log('✓ Cadastro realizado com sucesso!');
                 mostrarSucesso(dados.mensagem);
                 form.reset();
                 // Redirecionar após 2 segundos (opcional)
@@ -49,12 +76,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = '../index.html';
                 }, 2000);
             } else {
-                mostrarErro(dados.mensagem || 'Erro ao processar cadastro');
+                console.error('✗ Erro na resposta:', dados);
+                mostrarErro(dados.mensagem || 'Erro ao processar cadastro (Status: ' + response.status + ')');
             }
 
         } catch (erro) {
-            console.error('Erro:', erro);
-            mostrarErro('Erro de conexão. Tente novamente.');
+            console.error('✗ Erro de conexão:', erro);
+            mostrarErro('Erro de conexão. Tente novamente. Detalhes: ' + erro.message);
         } finally {
             // Reabilitar botão
             btnParticipar.disabled = false;
