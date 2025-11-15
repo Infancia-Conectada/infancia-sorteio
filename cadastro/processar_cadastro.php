@@ -34,6 +34,7 @@ registrarLog('Método: ' . $_SERVER['REQUEST_METHOD']);
 registrarLog('IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'desconhecido'));
 
 // Configurações do banco de dados
+
 define('DB_HOST', '45.152.46.204');
 define('DB_PORT', 3306);
 define('DB_USER', 'u583423626_user_ic');
@@ -145,10 +146,7 @@ try {
     $senha = $_POST['senha'] ?? '';
     $confirmar_senha = $_POST['confirmarsenha'] ?? '';
     
-    // Remover formatação do telefone (apenas números)
-    $telefone_sem_formatacao = preg_replace('/\D/', '', $telefone);
-    
-    registrarLog('Dados recebidos: nome=' . $nome . ', email=' . $email . ', telefone=' . $telefone . ' (sem formatação: ' . $telefone_sem_formatacao . ')');
+    registrarLog('Dados recebidos: nome=' . $nome . ', email=' . $email . ', telefone=' . $telefone);
     
     // Validações
     $erros = [];
@@ -172,12 +170,10 @@ try {
     }
     
     // Validar telefone
-    if (empty($telefone_sem_formatacao)) {
+    if (empty($telefone)) {
         $erros[] = 'Telefone é obrigatório';
-    } elseif (strlen($telefone_sem_formatacao) < 10 || strlen($telefone_sem_formatacao) > 11) {
-        $erros[] = 'Telefone deve ter 10 ou 11 dígitos';
-    } elseif (!preg_match('/^\d{10,11}$/', $telefone_sem_formatacao)) {
-        $erros[] = 'Telefone inválido. Use apenas números';
+    } elseif (!preg_match('/^\(\d{2}\)\s?\d{4,5}-\d{4}$/', $telefone)) {
+        $erros[] = 'Telefone inválido. Use o formato (XX) XXXXX-XXXX';
     }
     
     // Validar senha
@@ -265,7 +261,7 @@ try {
     }
     
     registrarLog('Bindando parâmetros do INSERT');
-    $stmt->bind_param('sssss', $nome, $email, $telefone_sem_formatacao, $senha_hash, $codigo_afiliado);
+    $stmt->bind_param('sssss', $nome, $email, $telefone, $senha_hash, $codigo_afiliado);
     
     registrarLog('Executando INSERT no banco...');
     if (!$stmt->execute()) {

@@ -5,32 +5,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('✓ DOM carregado e validacao.js ativo');
 
-    // Gerar CSRF token se não existir
-    if (!document.querySelector('input[name="csrf_token"]')) {
-        console.log('Gerando token CSRF...');
-        fetch('gerar_csrf.php')
-            .then(response => {
-                console.log('Resposta CSRF:', response.status);
-                return response.json();
-            })
-            .then(data => {
-                console.log('Token CSRF recebido:', data.token);
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'csrf_token';
-                input.value = data.token;
-                form.appendChild(input);
-                console.log('✓ Token CSRF adicionado ao formulário');
-            })
-            .catch(erro => {
-                console.error('Erro ao gerar CSRF:', erro);
-                mostrarErro('Erro ao gerar token de segurança');
-            });
-    }
+    // Gerar CSRF token ANTES de qualquer submit
+    let csrfTokenCarregado = false;
+    
+    fetch('gerar_csrf.php')
+        .then(response => {
+            console.log('Resposta CSRF:', response.status);
+            if (!response.ok) {
+                throw new Error('Erro ao buscar token CSRF');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Token CSRF recebido');
+            
+            // Remover token antigo se existir
+            const tokenAntigo = form.querySelector('input[name="csrf_token"]');
+            if (tokenAntigo) {
+                tokenAntigo.remove();
+            }
+            
+            // Adicionar novo token
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'csrf_token';
+            input.value = data.token;
+            form.appendChild(input);
+            
+            csrfTokenCarregado = true;
+            console.log('✓ Token CSRF adicionado ao formulário');
+        })
+        .catch(erro => {
+            console.error('Erro ao gerar CSRF:', erro);
+            mostrarErro('Erro ao carregar página. Recarregue e tente novamente.');
+        });
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         console.log('Formulário submetido');
+
+        // Verificar se CSRF foi carregado
+        if (!csrfTokenCarregado) {
+            mostrarErro('Aguarde o carregamento completo da página');
+            return;
+        }
 
         // Validação básica no cliente
         if (!validarFormulario()) {
@@ -43,14 +61,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Desabilitar botão e mostrar carregamento
         btnParticipar.disabled = true;
         btnParticipar.classList.add('loading');
+        limparFeedback();
 
         try {
             // Coletar dados do formulário
             const formData = new FormData(form);
             
-            console.log('Dados enviados:');
+            console.log('Dados sendo enviados (campos):');
             for (let pair of formData.entries()) {
-                console.log(pair[0] + ':', pair[1].substring ? pair[1].substring(0, 20) + '...' : pair[1]);
+                // NÃO logar senhas por segurança
+                if (pair[0] === 'senha' || pair[0] === 'confirmarsenha') {
+                    console.log(pair[0] + ': [OCULTADO]');
+                } else if (pair[0] === 'csrf_token') {
+                    console.log(pair[0] + ': [TOKEN]');
+                } else {
+                    console.log(pair[0] + ':', pair[1]);
+                }
             }
 
             // Enviar dados ao servidor
@@ -61,28 +87,37 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             console.log('Resposta recebida com status:', response.status);
-            console.log('Headers da resposta:', response.headers.get('content-type'));
+
+            const contentType = response.headers.get('content-type');
+            console.log('Content-Type da resposta:', contentType);
+
+            if (!contentType || !contentType.includes('application/json')) {
+                const texto = await response.text();
+                console.error('Resposta não é JSON:', texto.substring(0, 200));
+                throw new Error('Resposta inválida do servidor');
+            }
 
             const dados = await response.json();
             console.log('Dados JSON recebidos:', dados);
 
             // Mostrar feedback
-            if (response.ok) {
+            if (response.ok && dados.sucesso) {
                 console.log('✓ Cadastro realizado com sucesso!');
-                mostrarSucesso(dados.mensagem);
+                mostrarSucesso(dados.mensagem || 'Cadastro realizado com sucesso!');
                 form.reset();
-                // Redirecionar após 2 segundos (opcional)
+                
+                // Redirecionar após 2 segundos
                 setTimeout(() => {
                     window.location.href = '../index.html';
                 }, 2000);
             } else {
                 console.error('✗ Erro na resposta:', dados);
-                mostrarErro(dados.mensagem || 'Erro ao processar cadastro (Status: ' + response.status + ')');
+                mostrarErro(dados.mensagem || 'Erro ao processar cadastro');
             }
 
         } catch (erro) {
             console.error('✗ Erro de conexão:', erro);
-            mostrarErro('Erro de conexão. Tente novamente. Detalhes: ' + erro.message);
+            mostrarErro('Erro de conexão com o servidor. Tente novamente.');
         } finally {
             // Reabilitar botão
             btnParticipar.disabled = false;
@@ -176,6 +211,11 @@ document.addEventListener('DOMContentLoaded', function() {
         feedback.className = 'feedback error';
         feedback.textContent = '✗ ' + mensagem;
         feedback.classList.remove('hidden');
+    }
+
+    function limparFeedback() {
+        feedback.classList.add('hidden');
+        feedback.textContent = '';
     }
 
     // Mascarar telefone em tempo real
