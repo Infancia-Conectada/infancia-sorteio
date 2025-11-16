@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cadastre-se no Sorteio Infância Conectada">
+    <title>Cadastro | Sorteio Infância Conectada</title>
+    <link rel="stylesheet" href="styles-cadastro.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Header -->
+            <div class="header">
+                <img class="logo" src="images/logo-infancia-conectada.png" alt="Logo raposa Infância Conectada">
+                <h1>Sorteio Infância Conectada</h1>
+                <p class="subtitle">Cadastre-se para participar do sorteio!</p>
+            </div>
+            <!-- Formulário -->
+            <form id="cadastroForm" novalidate>
+                <!-- Campo Nome -->
+                <div class="input-group">
+                    <label for="nome">
+                        Nome completo
+                        <span class="required">*</span>
+                    </label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required
+                        minlength="3" maxlength="100" autocomplete="name" aria-describedby="nome-error">
+                    <span id="nome-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Campo Telefone -->
+                <div class="input-group">
+                    <label for="telefone">
+                        Whatsapp
+                        <span class="required">*</span>
+                    </label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required
+                        maxlength="15" autocomplete="tel" aria-describedby="telefone-error">
+                    <span id="telefone-error" class="error-message" role="alert"></span>
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit" id="btnParticipar" class="btn-primary">
+                    <span class="btn-text">Participar do Sorteio</span>
+                    <span class="btn-loader"></span>
+                </button>
+
+                <!-- Feedback Global -->
+                <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+            </form>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p class="info-text">
+                    <span class="icon">🔒</span>
+                    Seus dados estão seguros conosco
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-cadastro.js"></script>
+
+</body>
+
+</html>
