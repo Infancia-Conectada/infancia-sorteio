@@ -1,3 +1,0 @@
-1- Pagina inicial do sorteio esta redirecionando para o site hospedado na hostinger, não local.
-
-2 - Paginas "participantes" (que será a Home) e "sorteio" capturando e alimentando bd com parametro da url("https://infanciaconectada.com.br?ref=111")

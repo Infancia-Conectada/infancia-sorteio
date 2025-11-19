@@ -107,7 +107,59 @@ h1 {
 .subtitle {
     font-size: 0.95rem;
     color: var(--text-secondary);
-    margin: 0;
+    margin: 0 0 1rem 0;
+}
+
+/* Prize Badge */
+.prize-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, 
+        rgba(250, 204, 21, 0.15),
+        rgba(0, 212, 255, 0.15));
+    border: 2px solid var(--warning);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
+                0 0 40px rgba(250, 204, 21, 0.2);
+    animation: prizeGlow 2s ease-in-out infinite;
+}
+
+@keyframes prizeGlow {
+    0%, 100% {
+        box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
+                    0 0 40px rgba(250, 204, 21, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 6px 32px rgba(250, 204, 21, 0.5),
+                    0 0 60px rgba(250, 204, 21, 0.3);
+        transform: scale(1.02);
+    }
+}
+
+.prize-amount {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--warning), #ffd93d);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.prize-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--warning);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 /* ========================================
@@ -382,6 +434,14 @@ RESPONSIVIDADE
     .btn-primary {
         font-size: 0.95rem;
     }
+
+    .prize-amount {
+        font-size: 32px;
+    }
+
+    .prize-badge {
+        padding: 10px 20px;
+    }
 }
 
 @media (max-width: 360px) {
@@ -392,4 +452,48 @@ RESPONSIVIDADE
     .card {
         padding: 1.5rem 1rem;
     }
+
+    .prize-amount {
+        font-size: 28px;
+    }
+
+    .prize-label {
+        font-size: 11px;
+    }
+}
+
+.footer-contact {
+    text-align: center;
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+}
+
+.footer-contact p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
 }

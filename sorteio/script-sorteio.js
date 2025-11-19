@@ -418,7 +418,7 @@ function inicializarPagina() {
                     Participação Registrada!
                 `;
             } else if (result.status === 'duplicado') {
-                alert("Você já participou do sorteio desta empresa!");
+                alert("Você já participou do sorteio com essa empresa!");
                 window.open(instagramUrl, "_blank");
             } else {
                 throw new Error(result.mensagem || "Erro ao registrar");
