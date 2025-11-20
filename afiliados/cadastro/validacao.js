@@ -56,12 +56,29 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        console.log('✓ Validação passada, enviando dados...');
+        console.log('✓ Validação básica passada');
 
         // Desabilitar botão e mostrar carregamento
         btnParticipar.disabled = true;
         btnParticipar.classList.add('loading');
         limparFeedback();
+
+        // Validar WhatsApp
+        const telefone = document.getElementById('telefone').value;
+        console.log('Iniciando validação de WhatsApp...');
+        
+        const resultadoWhatsApp = await validarWhatsApp(telefone);
+        
+        if (!resultadoWhatsApp.sucesso || !resultadoWhatsApp.hasWhatsApp) {
+            console.log('✗ Telefone não possui WhatsApp');
+            mostrarErro(resultadoWhatsApp.mensagem || 'O telefone informado não possui WhatsApp ativo');
+            btnParticipar.disabled = false;
+            btnParticipar.classList.remove('loading');
+            return;
+        }
+        
+        console.log('✓ WhatsApp validado com sucesso');
+        console.log('✓ Validação passada, enviando dados...');
 
         try {
             // Coletar dados do formulário
@@ -185,6 +202,47 @@ document.addEventListener('DOMContentLoaded', function() {
     function isTelefoneValido(telefone) {
         const regex = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
         return regex.test(telefone);
+    }
+
+    async function validarWhatsApp(telefone) {
+        try {
+            // Remover formatação e adicionar código do Brasil
+            const numeroLimpo = telefone.replace(/\D/g, '');
+            const numeroComCodigo = '55' + numeroLimpo;
+            
+            console.log('Validando WhatsApp para:', numeroComCodigo);
+            
+            const response = await fetch('validar_whatsapp.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    number: numeroComCodigo
+                })
+            });
+            
+            if (!response.ok) {
+                console.error('Erro na validação de WhatsApp:', response.status);
+                return {
+                    sucesso: false,
+                    mensagem: 'Erro ao validar WhatsApp',
+                    hasWhatsApp: false
+                };
+            }
+            
+            const dados = await response.json();
+            console.log('Resposta validação WhatsApp:', dados);
+            
+            return dados;
+        } catch (erro) {
+            console.error('Erro ao validar WhatsApp:', erro);
+            return {
+                sucesso: false,
+                mensagem: 'Erro ao validar WhatsApp',
+                hasWhatsApp: false
+            };
+        }
     }
 
     function mostrarErrosCampo(nomeId, mensagem) {

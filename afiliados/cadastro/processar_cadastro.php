@@ -7,6 +7,7 @@ ini_set('log_errors', 1);
 header('Content-Type: application/json');
 
 require_once __DIR__ . '/../../config/session.php';
+require_once __DIR__ . '/../../config/whatsapp.php';
 start_secure_session();
 
 // Configurar logs
@@ -228,6 +229,34 @@ try {
     }
     
     registrarLog('Todas as validações passaram');
+    
+    // Validar WhatsApp
+    registrarLog('Validando se o telefone possui WhatsApp: ' . $telefone);
+    $resultadoWhatsApp = validarWhatsApp($telefone);
+    
+    if (!$resultadoWhatsApp['sucesso']) {
+        registrarLog('⚠ Erro ao validar WhatsApp: ' . $resultadoWhatsApp['mensagem'], 'WARNING');
+        http_response_code(400);
+        echo json_encode([
+            'sucesso' => false,
+            'mensagem' => 'Não foi possível validar o número de WhatsApp. Tente novamente.'
+        ]);
+        $conexao->close();
+        exit;
+    }
+    
+    if (!$resultadoWhatsApp['hasWhatsApp']) {
+        registrarLog('⚠ Telefone não possui WhatsApp: ' . $telefone, 'WARNING');
+        http_response_code(400);
+        echo json_encode([
+            'sucesso' => false,
+            'mensagem' => 'O telefone informado não possui WhatsApp ativo. Por favor, informe um número com WhatsApp.'
+        ]);
+        $conexao->close();
+        exit;
+    }
+    
+    registrarLog('✓ WhatsApp validado com sucesso: ' . $telefone);
     
     // Verificar se email já existe
     registrarLog('Verificando se email já existe: ' . $email);
