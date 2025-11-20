@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Política de Privacidade e Termos de Uso - Infância Conectada">
+    <title>Política de Privacidade e Termos de Uso | Infância Conectada</title>
+    <style>
+        /* ========================================
+           VARIÁVEIS E RESET
+           ======================================== */
+        :root {
+            --primary: #00d4ff;
+            --primary-dark: #0099cc;
+            --bg-dark: #0b0f17;
+            --bg-gradient-start: #00111a;
+            --bg-gradient-end: #000;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --accent: #00ff88;
+            --warning: #ffa502;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* ========================================
+           CONTAINER
+           ======================================== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo-title {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .last-update {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+
+        /* ========================================
+           ÍNDICE
+           ======================================== */
+        .indice {
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 20px 25px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+
+        .indice h3 {
+            color: var(--text-primary);
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .indice ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .indice li {
+            margin-bottom: 8px;
+        }
+
+        .indice a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .indice a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        /* ========================================
+           SEÇÕES
+           ======================================== */
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 20px;
+        }
+
+        .section h2 {
+            color: var(--text-primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            color: var(--text-primary);
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: var(--text-secondary);
+            font-size: 17px;
+            margin: 20px 0 12px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .section ul, .section ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+        }
+
+        /* ========================================
+           DESTAQUES
+           ======================================== */
+        .destaque {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .destaque.warning {
+            background: rgba(255, 165, 2, 0.1);
+            border-left-color: var(--warning);
+        }
+
+        .destaque strong {
+            color: var(--text-primary);
+        }
+
+        /* ========================================
+           TABELA
+           ======================================== */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--primary);
+            color: #000;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ========================================
+           ÍCONES
+           ======================================== */
+        .icon {
+            font-size: 24px;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .footer-contact {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        /* ========================================
+           RESPONSIVIDADE
+           ======================================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            .logo-title {
+                font-size: 26px;
+            }
+
+            .section h2 {
+                font-size: 20px;
+            }
+
+            .section h3 {
+                font-size: 18px;
+            }
+
+            .section ul, .section ol {
+                margin-left: 15px;
+            }
+
+            th, td {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px 15px;
+                border-radius: 12px;
+            }
+
+            .logo-title {
+                font-size: 22px;
+            }
+
+            .header-subtitle {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1 class="logo-title">Infância Conectada</h1>
+            <p class="header-subtitle">Política de Privacidade e Termos de Uso</p>
+            <span class="last-update">📅 Última atualização: 19 de novembro de 2024</span>
+        </div>
+
+        <!-- ÍNDICE -->
+        <nav class="indice">
+            <h3>📑 Índice</h3>
+            <ul>
+                <li><a href="#introducao">1. Introdução</a></li>
+                <li><a href="#definicoes">2. Definições</a></li>
+                <li><a href="#dados-coletados">3. Dados Coletados</a></li>
+                <li><a href="#finalidade">4. Finalidade do Tratamento</a></li>
+                <li><a href="#base-legal">5. Base Legal (LGPD)</a></li>
+                <li><a href="#compartilhamento">6. Compartilhamento de Dados</a></li>
+                <li><a href="#armazenamento">7. Armazenamento e Segurança</a></li>
+                <li><a href="#direitos">8. Direitos do Titular</a></li>
+                <li><a href="#whatsapp">9. Comunicação via WhatsApp</a></li>
+                <li><a href="#cookies">10. Cookies e Tecnologias</a></li>
+                <li><a href="#menores">11. Menores de Idade</a></li>
+                <li><a href="#alteracoes">12. Alterações na Política</a></li>
+                <li><a href="#contato">13. Contato e DPO</a></li>
+            </ul>
+        </nav>
+
+        <!-- SEÇÃO 1: INTRODUÇÃO -->
+        <section class="section" id="introducao">
+            <h2><span class="icon">📋</span> 1. Introdução</h2>
+            <p>
+                Bem-vindo à Política de Privacidade e Termos de Uso do <strong>Infância Conectada</strong> ("nós", "nosso" ou "Plataforma"). 
+                Este documento estabelece como coletamos, usamos, armazenamos e protegemos seus dados pessoais, em conformidade com a 
+                <strong>Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)</strong> e demais legislações aplicáveis.
+            </p>
+            <p>
+                Ao acessar nosso site, participar de sorteios e fornecer seus dados pessoais, você declara ter lido, compreendido 
+                e concordado com todos os termos desta política.
+            </p>
+            <div class="destaque warning">
+                <strong>⚠️ Importante:</strong> Se você não concorda com qualquer parte desta política, por favor, não utilize nossos serviços 
+                nem forneça seus dados pessoais.
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: DEFINIÇÕES -->
+        <section class="section" id="definicoes">
+            <h2><span class="icon">📖</span> 2. Definições</h2>
+            <p>Para os fins desta política, consideram-se:</p>
+            <ul>
+                <li><strong>Dados Pessoais:</strong> Informações relacionadas a pessoa natural identificada ou identificável.</li>
+                <li><strong>Titular:</strong> Pessoa natural a quem se referem os dados pessoais.</li>
+                <li><strong>Tratamento:</strong> Toda operação realizada com dados pessoais (coleta, armazenamento, uso, compartilhamento, eliminação).</li>
+                <li><strong>Controlador:</strong> Infância Conectada, responsável pelas decisões sobre o tratamento de dados.</li>
+                <li><strong>Operador:</strong> Pessoa ou entidade que realiza o tratamento em nome do Controlador.</li>
+                <li><strong>Consentimento:</strong> Manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento de seus dados.</li>
+                <li><strong>Anonimização:</strong> Processo que torna os dados irreversivelmente não identificáveis.</li>
+            </ul>
+        </section>
+
+        <!-- SEÇÃO 3: DADOS COLETADOS -->
+        <section class="section" id="dados-coletados">
+            <h2><span class="icon">🗂️</span> 3. Dados Coletados</h2>
+            
+            <h3>3.1. Dados Fornecidos Diretamente</h3>
+            <p>Coletamos os seguintes dados pessoais que você nos fornece voluntariamente:</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dado Coletado</th>
+                            <th>Finalidade</th>
+                            <th>Obrigatório</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nome Completo</td>
+                            <td>Identificação do participante</td>
+                            <td>Sim</td>
+                        </tr>
+                        <tr>
+                            <td>Número de WhatsApp</td>
+                            <td>Comunicação e confirmação de participação</td>
+                            <td>Sim</td>
+                        </tr>
+                        <tr>
+                            <td>Usuário do Instagram</td>
+                            <td>Validação de participação no sorteio</td>
+                            <td>Sim</td>
+                        </tr>
+                        <tr>
+                            <td>Parâmetros de URL (UTM)</td>
+                            <td>Análise de origem de tráfego</td>
+                            <td>Não</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3.2. Dados Coletados Automaticamente</h3>
+            <ul>
+                <li><strong>Endereço IP:</strong> Para segurança e prevenção de fraudes</li>
+                <li><strong>Informações do navegador:</strong> Tipo, versão e idioma</li>
+                <li><strong>Data e hora de acesso:</strong> Para logs de segurança</li>
+                <li><strong>Páginas visitadas:</strong> Para análise de comportamento</li>
+                <li><strong>Dispositivo utilizado:</strong> Tipo e sistema operacional</li>
+            </ul>
+
+            <h3>3.3. Dados Sensíveis</h3>
+            <div class="destaque">
+                <strong>✓ Garantia:</strong> NÃO coletamos dados sensíveis como origem racial, convicções religiosas, opiniões políticas, 
+                filiação sindical, dados genéticos, biométricos ou relativos à saúde.
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: FINALIDADE -->
+        <section class="section" id="finalidade">
+            <h2><span class="icon">🎯</span> 4. Finalidade do Tratamento</h2>
+            <p>Seus dados pessoais são tratados exclusivamente para as seguintes finalidades:</p>
+            
+            <h3>4.1. Finalidades Primárias</h3>
+            <ol>
+                <li><strong>Realização do Sorteio:</strong> Registro, validação e apuração dos participantes</li>
+                <li><strong>Comunicação Oficial:</strong> Envio de confirmações, atualizações e resultado do sorteio</li>
+                <li><strong>Verificação de Elegibilidade:</strong> Confirmar que seguiu todas as empresas parceiras no Instagram</li>
+                <li><strong>Entrega do Prêmio:</strong> Contato com o vencedor para entrega da premiação</li>
+            </ol>
+
+            <h3>4.2. Finalidades Secundárias (mediante consentimento adicional)</h3>
+            <ol>
+                <li><strong>Marketing:</strong> Envio de informações sobre eventos futuros do projeto</li>
+                <li><strong>Análises Estatísticas:</strong> Estudos de alcance e engajamento (dados anonimizados)</li>
+                <li><strong>Melhorias:</strong> Aprimoramento da experiência do usuário</li>
+            </ol>
+
+            <div class="destaque warning">
+                <strong>⚠️ Importante:</strong> Você pode recusar o consentimento para finalidades secundárias sem prejuízo à 
+                participação no sorteio.
+            </div>
+        </section>
+
+        <!-- SEÇÃO 5: BASE LEGAL -->
+        <section class="section" id="base-legal">
+            <h2><span class="icon">⚖️</span> 5. Base Legal (LGPD)</h2>
+            <p>O tratamento dos seus dados pessoais é fundamentado nas seguintes bases legais previstas no Art. 7º da LGPD:</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Base Legal</th>
+                            <th>Aplicação</th>
+                            <th>Artigo LGPD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Consentimento</td>
+                            <td>Participação voluntária no sorteio</td>
+                            <td>Art. 7º, I</td>
+                        </tr>
+                        <tr>
+                            <td>Execução de Contrato</td>
+                            <td>Cumprimento das regras do sorteio</td>
+                            <td>Art. 7º, V</td>
+                        </tr>
+                        <tr>
+                            <td>Legítimo Interesse</td>
+                            <td>Prevenção de fraudes e segurança</td>
+                            <td>Art. 7º, IX</td>
+                        </tr>
+                        <tr>
+                            <td>Obrigação Legal</td>
+                            <td>Cumprimento de legislação tributária</td>
+                            <td>Art. 7º, II</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 6: COMPARTILHAMENTO -->
+        <section class="section" id="compartilhamento">
+            <h2><span class="icon">🤝</span> 6. Compartilhamento de Dados</h2>
+            
+            <h3>6.1. Com Quem Compartilhamos</h3>
+            <p>Seus dados poderão ser compartilhados apenas com:</p>
+            <ul>
+                <li><strong>Empresas Parceiras do Sorteio:</strong> Montreal, Del Match, ST Motors (apenas para validação de seguimento no Instagram)</li>
+                <li><strong>Provedores de Serviços:</strong> Hospedagem de site, banco de dados e serviços de comunicação (WhatsApp Business)</li>
+                <li><strong>Autoridades Competentes:</strong> Quando exigido por lei ou ordem judicial</li>
+            </ul>
+
+            <h3>6.2. Garantias de Compartilhamento</h3>
+            <div class="destaque">
+                <strong>✓ Compromisso:</strong> Todos os parceiros e prestadores de serviços são obrigados contratualmente a:
+                <ul>
+                    <li>Tratar os dados com segurança e confidencialidade</li>
+                    <li>Usar os dados apenas para as finalidades autorizadas</li>
+                    <li>Cumprir integralmente a LGPD</li>
+                    <li>Não vender, alugar ou comercializar seus dados</li>
+                </ul>
+            </div>
+
+            <h3>6.3. Transferência Internacional</h3>
+            <p>
+                Alguns serviços utilizados (ex: hospedagem) podem estar localizados fora do Brasil. Nesses casos, garantimos 
+                que há cláusulas contratuais adequadas e mecanismos de proteção conforme Art. 33 da LGPD.
+            </p>
+        </section>
+
+        <!-- SEÇÃO 7: ARMAZENAMENTO -->
+        <section class="section" id="armazenamento">
+            <h2><span class="icon">🔒</span> 7. Armazenamento e Segurança</h2>
+            
+            <h3>7.1. Período de Retenção</h3>
+            <ul>
+                <li><strong>Durante o Sorteio:</strong> Dados armazenados até a conclusão e entrega do prêmio</li>
+                <li><strong>Após o Sorteio:</strong> 
+                    <ul>
+                        <li>Dados do vencedor: 5 anos (obrigação fiscal)</li>
+                        <li>Demais participantes: 6 meses (para atender eventuais contestações)</li>
+                        <li>Dados anonimizados: prazo indeterminado para estatísticas</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>7.2. Medidas de Segurança</h3>
+            <p>Implementamos as seguintes medidas técnicas e administrativas:</p>
+            <ul>
+                <li>✓ Criptografia SSL/TLS para transmissão de dados</li>
+                <li>✓ Banco de dados com acesso restrito por senha forte</li>
+                <li>✓ Backups automáticos e redundância</li>
+                <li>✓ Monitoramento de acessos e logs de auditoria</li>
+                <li>✓ Firewall e proteção contra ataques</li>
+                <li>✓ Treinamento da equipe em proteção de dados</li>
+                <li>✓ Política de senhas e controle de acesso</li>
+            </ul>
+
+            <h3>7.3. Incidentes de Segurança</h3>
+            <div class="destaque warning">
+                <strong>⚠️ Compromisso:</strong> Em caso de incidente de segurança que possa gerar risco ou dano relevante, 
+                você será notificado imediatamente, conforme Art. 48 da LGPD, e a ANPD será comunicada.
+            </div>
+        </section>
+
+        <!-- SEÇÃO 8: DIREITOS -->
+        <section class="section" id="direitos">
+            <h2><span class="icon">👤</span> 8. Direitos do Titular</h2>
+            <p>Conforme Art. 18 da LGPD, você tem os seguintes direitos:</p>
+            
+            <ol>
+                <li><strong>Confirmação e Acesso:</strong> Saber se tratamos seus dados e obter cópia deles</li>
+                <li><strong>Correção:</strong> Solicitar correção de dados incompletos, inexatos ou desatualizados</li>
+                <li><strong>Anonimização, Bloqueio ou Eliminação:</strong> De dados desnecessários, excessivos ou tratados irregularmente</li>
+                <li><strong>Portabilidade:</strong> Receber seus dados em formato estruturado e interoperável</li>
+                <li><strong>Eliminação:</strong> Dos dados tratados com seu consentimento (salvo exceções legais)</li>
+                <li><strong>Informação sobre Compartilhamento:</strong> Saber com quais entidades compartilhamos seus dados</li>
+                <li><strong>Revogação do Consentimento:</strong> Retirar seu consentimento a qualquer momento</li>
+                <li><strong>Oposição:</strong> Opor-se ao tratamento quando realizado com base em legítimo interesse</li>
+                <li><strong>Revisão de Decisões Automatizadas:</strong> Contestar decisões tomadas unicamente por algoritmos</li>
+            </ol>
+
+            <h3>8.1. Como Exercer Seus Direitos</h3>
+            <p>Para exercer qualquer um destes direitos, entre em contato conosco através dos canais indicados na seção 13.</p>
+            <div class="destaque">
+                <strong>✓ Prazo de Resposta:</strong> Atenderemos sua solicitação em até 15 dias corridos, podendo ser 
+                prorrogado por igual período mediante justificativa.
+            </div>
+        </section>
+
+        <!-- SEÇÃO 9: WHATSAPP -->
+        <section class="section" id="whatsapp">
+            <h2><span class="icon">💬</span> 9. Comunicação via WhatsApp</h2>
+            
+            <h3>9.1. Finalidade das Mensagens</h3>
+            <p>Utilizaremos seu número de WhatsApp exclusivamente para:</p>
+            <ul>
+                <li>✓ Confirmar sua participação no sorteio</li>
+                <li>✓ Informar o resultado do sorteio</li>
+                <li>✓ Contatar o vencedor para entrega do prêmio</li>
+                <li>✓ Responder dúvidas sobre o sorteio</li>
+            </ul>
+
+            <h3>9.2. Consentimento para Comunicação</h3>
+            <div class="destaque">
+                <strong>✓ Consentimento Expresso:</strong> Ao fornecer seu número de WhatsApp, você autoriza expressamente 
+                o envio de mensagens relacionadas ao sorteio, em conformidade com:
+                <ul>
+                    <li>Lei Geral de Proteção de Dados (LGPD - Lei 13.709/2018)</li>
+                    <li>Marco Civil da Internet (Lei 12.965/2014)</li>
+                    <li>Código de Defesa do Consumidor (Lei 8.078/1990)</li>
+                </ul>
+            </div>
+
+            <h3>9.3. Frequência e Horário</h3>
+            <ul>
+                <li>Enviaremos no máximo 3 mensagens durante todo o sorteio</li>
+                <li>Mensagens serão enviadas apenas em horário comercial (8h às 20h)</li>
+                <li>Respeitamos finais de semana e feriados</li>
+            </ul>
+
+            <h3>9.4. Opt-out (Cancelamento)</h3>
+            <p>
+                Você pode solicitar o cancelamento do recebimento de mensagens a qualquer momento respondendo 
+                "SAIR" ou "PARAR" em qualquer mensagem. Isso não afetará sua participação no sorteio já registrada.
+            </p>
+
+            <h3>9.5. Segurança no WhatsApp</h3>
+            <p>
+                Todas as comunicações via WhatsApp são protegidas pela criptografia de ponta a ponta do próprio aplicativo. 
+                Não armazenamos conteúdo das conversas, apenas registros de envio para fins de auditoria.
+            </p>
+        </section>
+
+        <!-- SEÇÃO 10: COOKIES -->
+        <section class="section" id="cookies">
+            <h2><span class="icon">🍪</span> 10. Cookies e Tecnologias</h2>
+            
+            <h3>10.1. O que são Cookies</h3>
+            <p>
+                Cookies são pequenos arquivos de texto armazenados no seu dispositivo quando você visita nosso site. 
+                Eles nos ajudam a melhorar sua experiência e entender como você utiliza nossa plataforma.
+            </p>
+
+            <h3>10.2. Tipos de Cookies Utilizados</h3>
+            <ul>
+                <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento do site (sessões, segurança)</li>
+                <li><strong>Cookies de Desempenho:</strong> Coletam informações sobre como você usa o site (páginas visitadas, tempo de permanência)</li>
+                <li><strong>Cookies de Funcionalidade:</strong> Lembram suas preferências (idioma, região)</li>
+            </ul>
+
+            <h3>10.3. Gerenciamento de Cookies</h3>
+            <p>
+                Você pode bloquear ou deletar cookies através das configurações do seu navegador. No entanto, 
+                isso pode afetar a funcionalidade do site.
+            </p>
+        </section>
+
+       

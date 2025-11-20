@@ -1,219 +1,280 @@
 // ========================================
-// Função de Máscara de Telefone
+// CONSTANTES E CONFIGURAÇÕES
 // ========================================
-function aplicarMascaraTelefone(valor) {
-    valor = valor.replace(/\D/g, ""); // Remove tudo que não é número
-
-    if (valor.length <= 10) {
-        // Telefone fixo: (11) 3456-7890
-        valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
-    } else {
-        // Celular: (11) 98765-4321
-        valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
-    }
-
-    return valor;
-}
+const CONFIG = {
+    API_URL: 'https://infanciaconectada.com.br/sorteio/registrar.php',
+    REDIRECT_BASE_URL: 'https://infanciaconectada.com.br/sorteio',
+    REDIRECT_DELAY: 1000,
+    INSTAGRAM_MAX_LENGTH: 31,
+    NOME_MIN_LENGTH: 3
+};
 
 // ========================================
-// Função de Máscara de Instagram
+// MÁSCARAS DE ENTRADA
 // ========================================
-function aplicarMascaraInstagram(valor) {
-    // Remove tudo exceto letras, números, pontos e underscores
-    valor = valor.replace(/[^a-zA-Z0-9._]/g, "");
-    
-    // Garante que comece com @
-    if (!valor.startsWith("@")) {
-        valor = "@" + valor;
-    }
-    
-    // Limita a 31 caracteres (30 + @)
-    if (valor.length > 31) {
-        valor = valor.substring(0, 31);
-    }
-    
-    return valor;
-}
+const Mascaras = {
+    telefone: (valor) => {
+        valor = valor.replace(/\D/g, "");
 
-// ========================================
-// Validação de Campos
-// ========================================
-
-// Verifica se o nome tem pelo menos 3 caracteres (ignora espaços extras)
-function validarNome(nome) {
-    return nome.trim().length >= 3;
-}
-
-// Verifica se o telefone está no formato válido (com DDD e traço)
-function validarTelefone(telefone) {
-    // Aceita tanto (00) 0000-0000 quanto (00) 00000-0000
-    const regex = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
-    return regex.test(telefone);
-}
-
-// Verifica se o Instagram é válido
-function validarInstagram(instagram) {
-    // Remove o @ para validação
-    const username = instagram.replace('@', '');
-    
-    // Deve ter pelo menos 1 caractere
-    if (username.length < 1) {
-        return false;
-    }
-    
-    // Deve conter apenas letras, números, pontos e underscores
-    const regex = /^[a-zA-Z0-9._]+$/;
-    return regex.test(username);
-}
-
-// ========================================
-// Captura parâmetro único da URL
-// ========================================
-function obterParametroUnico() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('ref') || urlParams.get('utm_source') || urlParams.get('source') || null;
-}
-
-// ========================================
-// Eventos e Lógica do Formulário
-// ========================================
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("cadastroForm");
-    const nomeInput = document.getElementById("nome");
-    const telefoneInput = document.getElementById("telefone");
-    const instagramInput = document.getElementById("instagram");
-    const feedback = document.getElementById("feedback");
-    const btn = document.getElementById("btnParticipar");
-
-    // Captura o parâmetro único da URL ao carregar a página
-    const parametroUnico = obterParametroUnico();
-
-    // Aplica máscara enquanto o usuário digita no telefone
-    telefoneInput.addEventListener("input", (e) => {
-        e.target.value = aplicarMascaraTelefone(e.target.value);
-    });
-
-    // Aplica máscara enquanto o usuário digita no Instagram
-    instagramInput.addEventListener("input", (e) => {
-        e.target.value = aplicarMascaraInstagram(e.target.value);
-    });
-
-    // Garante @ quando o campo recebe foco
-    instagramInput.addEventListener("focus", (e) => {
-        if (e.target.value === "") {
-            e.target.value = "@";
+        if (valor.length <= 10) {
+            // Telefone fixo: (11) 3456-7890
+            return valor.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+        } else {
+            // Celular: (11) 98765-4321
+            return valor.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
         }
-    });
+    },
 
-    // Previne que o @ seja removido
-    instagramInput.addEventListener("keydown", (e) => {
-        const cursorPos = e.target.selectionStart;
-        // Se tentar deletar o @ (posição 0)
-        if ((e.key === "Backspace" || e.key === "Delete") && cursorPos <= 1) {
-            e.preventDefault();
+    instagram: (valor) => {
+        // Remove caracteres não permitidos
+        valor = valor.replace(/[^a-zA-Z0-9._]/g, "");
+        
+        // Garante que comece com @
+        if (!valor.startsWith("@")) {
+            valor = "@" + valor;
         }
-    });
+        
+        // Limita a 31 caracteres (30 + @)
+        if (valor.length > CONFIG.INSTAGRAM_MAX_LENGTH) {
+            valor = valor.substring(0, CONFIG.INSTAGRAM_MAX_LENGTH);
+        }
+        
+        return valor;
+    }
+};
 
-    // Quando o formulário é enviado
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+// ========================================
+// VALIDAÇÕES
+// ========================================
+const Validacoes = {
+    nome: (nome) => {
+        return nome.trim().length >= CONFIG.NOME_MIN_LENGTH;
+    },
 
-        feedback.className = "feedback hidden";
-        nomeInput.classList.remove("invalid", "valid");
-        telefoneInput.classList.remove("invalid", "valid");
-        instagramInput.classList.remove("invalid", "valid");
+    telefone: (telefone) => {
+        // Aceita (00) 0000-0000 ou (00) 00000-0000
+        const regex = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
+        return regex.test(telefone);
+    },
 
-        const nome = nomeInput.value.trim();
-        const telefone = telefoneInput.value.trim();
-        const instagram = instagramInput.value.trim();
+    instagram: (instagram) => {
+        const username = instagram.replace('@', '');
+        
+        if (username.length < 1) {
+            return false;
+        }
+        
+        // Apenas letras, números, pontos e underscores
+        const regex = /^[a-zA-Z0-9._]+$/;
+        return regex.test(username);
+    }
+};
+
+// ========================================
+// UTILIDADES
+// ========================================
+const Utils = {
+    obterParametroUnico: () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('ref') || 
+               urlParams.get('utm_source') || 
+               urlParams.get('source') || 
+               null;
+    },
+
+    limparValidacoes: (inputs) => {
+        inputs.forEach(input => {
+            input.classList.remove("invalid", "valid");
+        });
+    },
+
+    exibirErro: (inputId, mensagem) => {
+        const errorSpan = document.getElementById(`${inputId}-error`);
+        const input = document.getElementById(inputId);
+        
+        errorSpan.textContent = mensagem;
+        errorSpan.classList.add("show");
+        input.classList.add("invalid");
+    },
+
+    limparErro: (inputId) => {
+        const errorSpan = document.getElementById(`${inputId}-error`);
+        const input = document.getElementById(inputId);
+        
+        errorSpan.textContent = "";
+        errorSpan.classList.remove("show");
+        input.classList.add("valid");
+    }
+};
+
+// ========================================
+// GERENCIAMENTO DO FORMULÁRIO
+// ========================================
+class FormularioCadastro {
+    constructor() {
+        this.form = document.getElementById("cadastroForm");
+        this.inputs = {
+            nome: document.getElementById("nome"),
+            telefone: document.getElementById("telefone"),
+            instagram: document.getElementById("instagram")
+        };
+        this.feedback = document.getElementById("feedback");
+        this.btnSubmit = document.getElementById("btnParticipar");
+        this.parametroUnico = Utils.obterParametroUnico();
+
+        this.inicializarEventos();
+    }
+
+    inicializarEventos() {
+        // Máscara de telefone
+        this.inputs.telefone.addEventListener("input", (e) => {
+            e.target.value = Mascaras.telefone(e.target.value);
+        });
+
+        // Máscara de Instagram
+        this.inputs.instagram.addEventListener("input", (e) => {
+            e.target.value = Mascaras.instagram(e.target.value);
+        });
+
+        // Adiciona @ quando o campo Instagram recebe foco
+        this.inputs.instagram.addEventListener("focus", (e) => {
+            if (e.target.value === "") {
+                e.target.value = "@";
+            }
+        });
+
+        // Previne remoção do @
+        this.inputs.instagram.addEventListener("keydown", (e) => {
+            const cursorPos = e.target.selectionStart;
+            if ((e.key === "Backspace" || e.key === "Delete") && cursorPos <= 1) {
+                e.preventDefault();
+            }
+        });
+
+        // Submit do formulário
+        this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+    }
+
+    validarCampos() {
+        const valores = {
+            nome: this.inputs.nome.value.trim(),
+            telefone: this.inputs.telefone.value.trim(),
+            instagram: this.inputs.instagram.value.trim()
+        };
 
         let valido = true;
 
-        // Validação do nome
-        if (!validarNome(nome)) {
-            const msg = document.getElementById("nome-error");
-            msg.textContent = "Digite um nome válido (mínimo 3 caracteres).";
-            msg.classList.add("show");
-            nomeInput.classList.add("invalid");
+        // Validação Nome
+        if (!Validacoes.nome(valores.nome)) {
+            Utils.exibirErro("nome", "Digite um nome válido (mínimo 3 caracteres).");
             valido = false;
         } else {
-            document.getElementById("nome-error").textContent = "";
-            nomeInput.classList.add("valid");
+            Utils.limparErro("nome");
         }
 
-        // Validação do telefone
-        if (!validarTelefone(telefone)) {
-            const msg = document.getElementById("telefone-error");
-            msg.textContent = "Digite um telefone válido (ex: (11) 98765-4321).";
-            msg.classList.add("show");
-            telefoneInput.classList.add("invalid");
+        // Validação Telefone
+        if (!Validacoes.telefone(valores.telefone)) {
+            Utils.exibirErro("telefone", "Digite um telefone válido (ex: (11) 98765-4321).");
             valido = false;
         } else {
-            document.getElementById("telefone-error").textContent = "";
-            telefoneInput.classList.add("valid");
+            Utils.limparErro("telefone");
         }
 
-        // Validação do Instagram
-        if (!validarInstagram(instagram)) {
-            const msg = document.getElementById("instagram-error");
-            msg.textContent = "Digite um Instagram válido (ex: @seu_usuario).";
-            msg.classList.add("show");
-            instagramInput.classList.add("invalid");
+        // Validação Instagram
+        if (!Validacoes.instagram(valores.instagram)) {
+            Utils.exibirErro("instagram", "Digite um Instagram válido (ex: @seu_usuario).");
             valido = false;
         } else {
-            document.getElementById("instagram-error").textContent = "";
-            instagramInput.classList.add("valid");
+            Utils.limparErro("instagram");
         }
 
-        // Caso esteja tudo certo
-        if (valido) {
-            btn.classList.add("loading");
-            btn.disabled = true;
+        return { valido, valores };
+    }
 
-            try {
-                // Envia dados para criar sessão no servidor
-                const response = await fetch("https://infanciaconectada.com.br/sorteio/registrar.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ 
-                        acao: 'criar_sessao',
-                        nome, 
-                        telefone,
-                        parametro_unico: parametroUnico,
-                        instagram
-                    })
-                });
+    exibirFeedback(tipo, mensagem) {
+        this.feedback.textContent = mensagem;
+        this.feedback.className = `feedback ${tipo}`;
+    }
 
-                // Verifica se a resposta é OK
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP: ${response.status}`);
-                }
+    setBotaoCarregando(carregando) {
+        if (carregando) {
+            this.btnSubmit.classList.add("loading");
+            this.btnSubmit.disabled = true;
+        } else {
+            this.btnSubmit.classList.remove("loading");
+            this.btnSubmit.disabled = false;
+        }
+    }
 
-                const result = await response.json();
-                console.log("Resposta do servidor:", result);
+    async enviarDados(valores) {
+        const payload = {
+            acao: 'criar_sessao',
+            nome: valores.nome,
+            telefone: valores.telefone,
+            instagram: valores.instagram,
+            parametro_unico: this.parametroUnico
+        };
 
-                if (result.status === 'ok' && result.sessao_id) {
-                    feedback.textContent = "Redirecionando...";
-                    feedback.className = "feedback success";
+        const response = await fetch(CONFIG.API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
 
-                    // Aguarda um pouco antes de redirecionar
-                    await new Promise(resolve => setTimeout(resolve, 1000));
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+        }
 
-                    // Redireciona com ID da sessão
-                    window.location.href = `https://infanciaconectada.com.br/sorteio?s=${result.sessao_id}`;
-                } else {
-                    throw new Error(result.mensagem || "Erro ao criar sessão");
-                }
-            } catch (error) {
-                console.error("Erro completo:", error);
-                feedback.textContent = "Erro ao processar cadastro: " + (error.message || "Tente novamente.");
-                feedback.className = "feedback error";
-                btn.classList.remove("loading");
-                btn.disabled = false;
+        return await response.json();
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+
+        // Limpa feedback e validações anteriores
+        this.feedback.className = "feedback hidden";
+        Utils.limparValidacoes(Object.values(this.inputs));
+
+        // Valida campos
+        const { valido, valores } = this.validarCampos();
+
+        if (!valido) {
+            this.exibirFeedback("error", "Por favor, corrija os campos destacados.");
+            return;
+        }
+
+        // Inicia loading
+        this.setBotaoCarregando(true);
+
+        try {
+            const result = await this.enviarDados(valores);
+            console.log("Resposta do servidor:", result);
+
+            if (result.status === 'ok' && result.sessao_id) {
+                this.exibirFeedback("success", "Redirecionando...");
+
+                // Aguarda antes de redirecionar
+                await new Promise(resolve => setTimeout(resolve, CONFIG.REDIRECT_DELAY));
+
+                // Redireciona com ID da sessão
+                window.location.href = `${CONFIG.REDIRECT_BASE_URL}?s=${result.sessao_id}`;
+            } else {
+                throw new Error(result.mensagem || "Erro ao criar sessão");
             }
-        } else {
-            feedback.textContent = "Por favor, corrija os campos destacados.";
-            feedback.className = "feedback error";
+        } catch (error) {
+            console.error("Erro completo:", error);
+            this.exibirFeedback(
+                "error", 
+                `Erro ao processar cadastro: ${error.message || "Tente novamente."}`
+            );
+            this.setBotaoCarregando(false);
         }
-    });
+    }
+}
+
+// ========================================
+// INICIALIZAÇÃO
+// ========================================
+document.addEventListener("DOMContentLoaded", () => {
+    new FormularioCadastro();
 });

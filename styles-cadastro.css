@@ -1,42 +1,50 @@
 /* ========================================
-IMPORTAÇÃO DE FONTES
-======================================== */
+   IMPORTAÇÃO DE FONTES
+   ======================================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* ========================================
-VARIÁVEIS CSS
-======================================== */
+   VARIÁVEIS CSS
+   ======================================== */
 :root {
+    /* Cores Primárias */
     --primary: #00d4ff;
     --primary-hover: #00bde6;
     --primary-dark: #0099cc;
+    
+    /* Cores de Status */
     --success: #00ff88;
     --error: #ff4757;
     --warning: #ffa502;
 
+    /* Background */
     --bg-dark: #0b0f17;
     --bg-gradient-start: #00111a;
     --bg-gradient-end: #000;
 
+    /* Glass Effect */
     --glass: rgba(255, 255, 255, 0.05);
     --glass-hover: rgba(255, 255, 255, 0.08);
     --glass-border: rgba(255, 255, 255, 0.1);
 
+    /* Texto */
     --text-primary: #ffffff;
     --text-secondary: #a0aec0;
     --text-muted: #718096;
 
+    /* Sombras */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
     --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
 
+    /* Transições */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.15s ease;
 }
 
 /* ========================================
-RESET E BASE
-======================================== */
+   RESET E BASE
+   ======================================== */
 * {
     margin: 0;
     padding: 0;
@@ -58,8 +66,8 @@ body {
 }
 
 /* ========================================
-CONTAINER E CARD
-======================================== */
+   CONTAINER E CARD
+   ======================================== */
 .container {
     width: 100%;
     max-width: 480px;
@@ -82,8 +90,8 @@ CONTAINER E CARD
 }
 
 /* ========================================
-HEADER
-======================================== */
+   HEADER
+   ======================================== */
 .header {
     text-align: center;
     margin-bottom: 2rem;
@@ -110,7 +118,9 @@ h1 {
     margin: 0 0 1rem 0;
 }
 
-/* Prize Badge */
+/* ========================================
+   PRIZE BADGE
+   ======================================== */
 .prize-badge {
     display: inline-flex;
     flex-direction: column;
@@ -123,23 +133,9 @@ h1 {
         rgba(0, 212, 255, 0.15));
     border: 2px solid var(--warning);
     border-radius: 12px;
-    position: relative;
     box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
                 0 0 40px rgba(250, 204, 21, 0.2);
     animation: prizeGlow 2s ease-in-out infinite;
-}
-
-@keyframes prizeGlow {
-    0%, 100% {
-        box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
-                    0 0 40px rgba(250, 204, 21, 0.2);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 6px 32px rgba(250, 204, 21, 0.5),
-                    0 0 60px rgba(250, 204, 21, 0.3);
-        transform: scale(1.02);
-    }
 }
 
 .prize-amount {
@@ -163,23 +159,23 @@ h1 {
 }
 
 /* ========================================
-FORMULÁRIO
-======================================== */
+   FORMULÁRIO
+   ======================================== */
 #cadastroForm {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-/* ========================================
-INPUT GROUPS
-======================================== */
 .input-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
+/* ========================================
+   LABELS E INPUTS
+   ======================================== */
 label {
     font-size: 0.875rem;
     font-weight: 500;
@@ -194,9 +190,6 @@ label {
     font-weight: 600;
 }
 
-/* ========================================
-INPUTS
-======================================== */
 input {
     width: 100%;
     padding: 0.875rem 1rem;
@@ -235,8 +228,8 @@ input.invalid {
 }
 
 /* ========================================
-MENSAGENS DE ERRO
-======================================== */
+   MENSAGENS DE ERRO
+   ======================================== */
 .error-message {
     font-size: 0.8rem;
     color: var(--error);
@@ -252,8 +245,8 @@ MENSAGENS DE ERRO
 }
 
 /* ========================================
-BOTÃO PRINCIPAL
-======================================== */
+   BOTÃO PRINCIPAL
+   ======================================== */
 .btn-primary {
     position: relative;
     width: 100%;
@@ -298,7 +291,6 @@ BOTÃO PRINCIPAL
     background: linear-gradient(135deg, var(--success), #00cc70);
 }
 
-/* Loader do Botão */
 .btn-loader {
     display: none;
     position: absolute;
@@ -314,8 +306,8 @@ BOTÃO PRINCIPAL
 }
 
 /* ========================================
-FEEDBACK GLOBAL
-======================================== */
+   FEEDBACK GLOBAL
+   ======================================== */
 .feedback {
     padding: 0.875rem 1rem;
     border-radius: 10px;
@@ -346,8 +338,44 @@ FEEDBACK GLOBAL
 }
 
 /* ========================================
-FOOTER
-======================================== */
+   FOOTER
+   ======================================== */
+.footer-contact {
+    text-align: center;
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+}
+
+.footer-contact p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+}
+
 .footer {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
@@ -369,14 +397,13 @@ FOOTER
 }
 
 /* ========================================
-ANIMAÇÕES
-======================================== */
+   ANIMAÇÕES
+   ======================================== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -388,7 +415,6 @@ ANIMAÇÕES
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -396,16 +422,12 @@ ANIMAÇÕES
 }
 
 @keyframes shake {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateX(0);
     }
-
     25% {
         transform: translateX(-8px);
     }
-
     75% {
         transform: translateX(8px);
     }
@@ -417,9 +439,22 @@ ANIMAÇÕES
     }
 }
 
+@keyframes prizeGlow {
+    0%, 100% {
+        box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
+                    0 0 40px rgba(250, 204, 21, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 6px 32px rgba(250, 204, 21, 0.5),
+                    0 0 60px rgba(250, 204, 21, 0.3);
+        transform: scale(1.02);
+    }
+}
+
 /* ========================================
-RESPONSIVIDADE
-======================================== */
+   RESPONSIVIDADE
+   ======================================== */
 @media (max-width: 480px) {
     .card {
         padding: 2rem 1.5rem;
@@ -460,40 +495,4 @@ RESPONSIVIDADE
     .prize-label {
         font-size: 11px;
     }
-}
-
-.footer-contact {
-    text-align: center;
-    margin-top: 32px;
-    padding: 24px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-}
-
-.footer-contact p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 12px;
-}
-
-.whatsapp-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    border-radius: 12px;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    transition: var(--transition);
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
-}
-
-.whatsapp-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
 }
