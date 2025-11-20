@@ -5,7 +5,9 @@ ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
 header('Content-Type: application/json');
-session_start();
+
+require_once __DIR__ . '/../../config/session.php';
+start_secure_session();
 
 // Configurar logs
 $log_file = __DIR__ . '/logs/cadastro_' . date('Y-m-d') . '.log';
@@ -33,15 +35,26 @@ registrarLog('=== NOVA REQUISIÇÃO INICIADA ===', 'START');
 registrarLog('Método: ' . $_SERVER['REQUEST_METHOD']);
 registrarLog('IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'desconhecido'));
 
-// Configurações do banco de dados
+// Configurações do banco de dados via ambiente
+$dbConfig = [
+    'host' => env('DB_HOST'),
+    'port' => (int) env('DB_PORT', 3306),
+    'user' => env('DB_USER'),
+    'pass' => env('DB_PASS'),
+    'name' => env('DB_NAME'),
+];
 
-define('DB_HOST', '45.152.46.204');
-define('DB_PORT', 3306);
-define('DB_USER', 'u583423626_user_ic');
-define('DB_PASS', 'Infancia123456');
-define('DB_NAME', 'u583423626_infancia');
+if (empty($dbConfig['host']) || empty($dbConfig['user']) || empty($dbConfig['name'])) {
+    registrarLog('Configurações de banco ausentes nas variáveis de ambiente', 'ERROR');
+    http_response_code(500);
+    echo json_encode([
+        'sucesso' => false,
+        'mensagem' => 'Configuração do banco de dados não encontrada'
+    ]);
+    exit;
+}
 
-registrarLog('Configurações BD definidas');
+registrarLog('Configurações BD carregadas das variáveis de ambiente');
 
 // Classe para tratar erros
 class RespuestaAPI {
@@ -78,7 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 registrarLog('Requisição POST recebida');
-registrarLog('POST data: ' . json_encode($_POST, JSON_UNESCAPED_UNICODE));
+$dadosLog = array_diff_key($_POST, [
+    'senha' => true,
+    'confirmarsenha' => true,
+    'csrf_token' => true
+]);
+registrarLog('POST data: ' . json_encode($dadosLog, JSON_UNESCAPED_UNICODE));
 
 // Validar CSRF (opcional, mas recomendado)
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -97,10 +115,16 @@ registrarLog('Token CSRF válido');
 
 try {
     // Conectar ao banco de dados
-    registrarLog('Tentando conectar ao banco: ' . DB_NAME . '@' . DB_HOST . ':' . DB_PORT);
-    registrarLog('Usuário: ' . DB_USER, 'DEBUG');
+    registrarLog('Tentando conectar ao banco: ' . $dbConfig['name'] . '@' . $dbConfig['host'] . ':' . $dbConfig['port']);
+    registrarLog('Usuário: ' . $dbConfig['user'], 'DEBUG');
     
-    $conexao = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+    $conexao = new mysqli(
+        $dbConfig['host'],
+        $dbConfig['user'],
+        $dbConfig['pass'],
+        $dbConfig['name'],
+        $dbConfig['port']
+    );
     
     // Verificar conexão
     if ($conexao->connect_error) {

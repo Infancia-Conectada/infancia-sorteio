@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: application/json');
-session_start();
+
+require_once __DIR__ . '/../../config/session.php';
+start_secure_session();
 
 // Gerar token CSRF se não existir
 if (empty($_SESSION['csrf_token'])) {

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Serviço PHP com Apache
+  php:
+    image: php:8.2-apache
+    container_name: afiliados_php
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - PHP_MEMORY_LIMIT=256M
+      - PHP_MAX_EXECUTION_TIME=300
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - FORCE_SECURE_COOKIES=${FORCE_SECURE_COOKIES:-false}
+      - SESSION_NAME=${SESSION_NAME:-infancia_session}
+      - SESSION_SAMESITE=${SESSION_SAMESITE:-Strict}
+    networks:
+      - afiliados_network
+    restart: unless-stopped
+    command: >
+      bash -c "
+      docker-php-ext-install mysqli pdo pdo_mysql &&
+      a2enmod rewrite &&
+      apache2-foreground
+      "
+
+networks:
+  afiliados_network:
+    driver: bridge

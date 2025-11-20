@@ -1,3 +1,7 @@
+<?php 
+// Verificar autenticação ANTES de qualquer HTML
+require_once 'verificar_autenticacao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,6 +11,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Painel de Afiliado - Sorteio Infância Conectada">
+    
+    <!-- Prevenir cache após logout -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <title>Painel de Afiliado | Sorteio Infância Conectada</title>
     <link rel="stylesheet" href="styles-painel.css">
 </head>
@@ -24,7 +34,6 @@
     <header class="header">
         <div class="header-container">
             <div class="header-left">
-                <img class="logo" src="../images/logo-infancia-conectada.png" alt="Logo Infância Conectada">
                 <div class="header-info">
                     <h1 class="header-title">Olá, <span id="nomeAfiliado">Carregando...</span>!</h1>
                     <p class="header-subtitle">Bem-vindo ao Painel de Afiliado - Infância Conectada</p>

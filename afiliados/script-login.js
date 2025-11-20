@@ -5,6 +5,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('✓ DOM carregado e script-login.js ativo');
 
+    // Gerenciamento de CSRF
+    let csrfTokenCarregado = false;
+
+    async function carregarCsrfToken() {
+        try {
+            const response = await fetch('cadastro/gerar_csrf.php', {
+                credentials: 'same-origin'
+            });
+
+            if (!response.ok) {
+                throw new Error('Falha ao buscar token CSRF');
+            }
+
+            const data = await response.json();
+            let tokenInput = form.querySelector('input[name="csrf_token"]');
+            if (!tokenInput) {
+                tokenInput = document.createElement('input');
+                tokenInput.type = 'hidden';
+                tokenInput.name = 'csrf_token';
+                form.appendChild(tokenInput);
+            }
+
+            tokenInput.value = data.token;
+            csrfTokenCarregado = true;
+            console.log('✓ Token CSRF carregado para o formulário de login');
+        } catch (error) {
+            console.error('Erro ao carregar token CSRF:', error);
+            mostrarErro('Erro ao inicializar o formulário. Recarregue a página.');
+        }
+    }
+
+    carregarCsrfToken();
+
     // Validar e limpar campos ao sair do foco
     const emailInput = document.getElementById('email');
     const senhaInput = document.getElementById('senha');
@@ -100,6 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         console.log('Formulário de login submetido');
 
+        if (!csrfTokenCarregado) {
+            mostrarErro('Aguarde o carregamento do formulário antes de enviar.');
+            return;
+        }
+
         // Validação básica no cliente
         if (!validarFormulario()) {
             console.log('Validação do formulário falhou');
@@ -123,6 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // NÃO logar senhas por segurança
                 if (pair[0] === 'senha') {
                     console.log(pair[0] + ': [OCULTADO]');
+                } else if (pair[0] === 'csrf_token') {
+                    console.log(pair[0] + ': [TOKEN]');
                 } else {
                     console.log(pair[0] + ':', pair[1]);
                 }
@@ -130,9 +170,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Enviar dados ao servidor
             console.log('Enviando requisição para validar_login.php...');
-            const response = await fetch('/validar_login.php', {
+            const response = await fetch('validar_login.php', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                credentials: 'same-origin'
             });
 
             console.log('Resposta recebida com status:', response.status);
@@ -169,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Redirecionar para o painel de afiliado após 1.5 segundos
                 setTimeout(() => {
                     console.log('Redirecionando para painel de afiliado...');
-                    window.location.href = '/cadastro/painel/';
+                    window.location.href = 'painel/';
                 }, 1500);
 
             } else {
@@ -180,11 +221,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (dados.erros && Array.isArray(dados.erros)) {
                     console.log('Erros encontrados:', dados.erros);
                 }
+                await carregarCsrfToken();
             }
 
         } catch (erro) {
             console.error('Erro na requisição:', erro);
             mostrarErro('Erro ao conectar ao servidor. Tente novamente.');
+            await carregarCsrfToken();
         } finally {
             // Re-habilitar botão
             btnParticipar.disabled = false;
