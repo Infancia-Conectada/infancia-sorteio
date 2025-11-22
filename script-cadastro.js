@@ -104,6 +104,74 @@ const Utils = {
         errorSpan.textContent = "";
         errorSpan.classList.remove("show");
         input.classList.add("valid");
+    },
+
+    validarWhatsApp: async (telefone) => {
+        try {
+            // Remover formatação e adicionar código do Brasil
+            const numeroLimpo = telefone.replace(/\D/g, '');
+            const numeroComCodigo = '55' + numeroLimpo;
+            
+            const response = await fetch('/afiliados/cadastro/validar_whatsapp.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    number: numeroComCodigo
+                })
+            });
+            
+            if (!response.ok) {
+                console.error('Erro na validação de WhatsApp:', response.status);
+                return {
+                    sucesso: false,
+                    mensagem: 'Erro ao validar WhatsApp',
+                    hasWhatsApp: false
+                };
+            }
+            
+            const dados = await response.json();
+            
+            return dados;
+        } catch (erro) {
+            console.error('Erro ao validar WhatsApp:', erro);
+            return {
+                sucesso: false,
+                mensagem: 'Erro ao validar WhatsApp',
+                hasWhatsApp: false
+            };
+        }
+    },
+
+    validarInstagram: async (username) => {
+        try {
+            // Remover @ se existir
+            const usernameClean = username.replace('@', '');
+            
+            const response = await fetch('/validar_instagram.php?username=' + encodeURIComponent(usernameClean), {
+                method: 'GET'
+            });
+            
+            if (!response.ok) {
+                return {
+                    success: false,
+                    data: {},
+                    error: 'Erro ao validar Instagram'
+                };
+            }
+            
+            const dados = await response.json();
+            
+            return dados;
+        } catch (erro) {
+            console.error('Erro ao validar Instagram:', erro);
+            return {
+                success: false,
+                data: {},
+                error: 'Erro ao validar Instagram'
+            };
+        }
     }
 };
 
@@ -245,10 +313,36 @@ class FormularioCadastro {
 
         // Inicia loading
         this.setBotaoCarregando(true);
+        this.exibirFeedback("info", "⏳ Aguarde, estamos verificando as informações...");
 
         try {
+            // Validar WhatsApp
+            const resultadoWhatsApp = await Utils.validarWhatsApp(valores.telefone);
+            
+            if (!resultadoWhatsApp.sucesso || !resultadoWhatsApp.hasWhatsApp) {
+                this.inputs.telefone.classList.add('invalid');
+                this.exibirFeedback(
+                    "error",
+                    resultadoWhatsApp.mensagem || "O telefone informado não possui WhatsApp ativo"
+                );
+                this.setBotaoCarregando(false);
+                return;
+            }
+
+            // Validar Instagram
+            const resultadoInstagram = await Utils.validarInstagram(valores.instagram);
+            
+            if (!resultadoInstagram.success) {
+                this.inputs.instagram.classList.add('invalid');
+                this.exibirFeedback(
+                    "error",
+                    resultadoInstagram.error || "O username do Instagram não existe. Verifique se digitou corretamente."
+                );
+                this.setBotaoCarregando(false);
+                return;
+            }
+
             const result = await this.enviarDados(valores);
-            console.log("Resposta do servidor:", result);
 
             if (result.status === 'ok' && result.sessao_id) {
                 this.exibirFeedback("success", "Redirecionando...");

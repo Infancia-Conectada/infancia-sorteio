@@ -1,18 +1,66 @@
 <?php
+// Carregar configurações de ambiente primeiro
+require_once __DIR__ . '/../config/env.php';
+
+// Configurar display_errors baseado no ambiente
+if (env('APP_ENV') === 'production') {
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    error_reporting(E_ALL);
+} else {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+}
+
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
+
+// Carregar função de validação de WhatsApp e Instagram
+
+// Configurar CORS restritivo
+$allowed_origins = explode(',', env('ALLOWED_ORIGINS', 'http://localhost,http://localhost:80'));
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header('Access-Control-Allow-Credentials: true');
+} elseif (env('APP_ENV') === 'development') {
+    // Em desenvolvimento, permitir localhost
+    if (strpos($origin, 'http://localhost') === 0 || strpos($origin, 'http://127.0.0.1') === 0) {
+        header("Access-Control-Allow-Origin: $origin");
+    }
+}
+
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Configuração do banco
-$host = "localhost"; 
-$user = "u583423626_user_ic";
-$pass = "Infancia123456";
-$dbname = "u583423626_infancia";
+// Responder a requisições OPTIONS (preflight)
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+require_once __DIR__ . '/../config/env.php';
+require_once __DIR__ . '/../config/whatsapp.php';
+require_once __DIR__ . '/../config/instagram.php';
+
+// Configuração do banco via variáveis de ambiente
+$host = env('DB_HOST', 'localhost');
+$user = env('DB_USER');
+$pass = env('DB_PASS');
+$dbname = env('DB_NAME');
+
+// Validar configurações obrigatórias
+if (empty($user) || empty($pass) || empty($dbname)) {
+    error_log('ERRO: Configurações de banco ausentes no .env');
+    echo json_encode(['status' => 'erro', 'mensagem' => 'Configuração do banco de dados não encontrada']);
+    exit;
+}
 
 // Conecta ao banco
 $conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
+    error_log('ERRO MySQL: ' . $conn->connect_error);
     echo json_encode(['status' => 'erro', 'mensagem' => 'Erro de conexão']);
     exit;
 }
@@ -38,10 +86,10 @@ if ($acao === 'criar_sessao') {
         exit;
     }
 
-    $nome = $conn->real_escape_string(trim($data['nome']));
-    $telefone = $conn->real_escape_string(trim($data['telefone']));
-    $instagram = $conn->real_escape_string(trim($data['instagram']));
-    $parametro_unico = isset($data['parametro_unico']) ? $conn->real_escape_string(trim($data['parametro_unico'])) : null;
+    $nome = trim($data['nome']);
+    $telefone = trim($data['telefone']);
+    $instagram = trim($data['instagram']);
+    $parametro_unico = isset($data['parametro_unico']) ? trim($data['parametro_unico']) : null;
 
     // Valida formato do telefone
     if (!preg_match('/^\(\d{2}\)\s?\d{4,5}-\d{4}$/', $telefone)) {
@@ -59,6 +107,27 @@ if ($acao === 'criar_sessao') {
     $instagram_limpo = str_replace('@', '', $instagram);
     if (!preg_match('/^(?!.*\.\.)(?!\.)(?!.*\.$)[a-zA-Z0-9._]{1,30}$/', $instagram_limpo)) {
         echo json_encode(['status' => 'erro', 'mensagem' => 'Instagram inválido']);
+        exit;
+    }
+
+    // Validar WhatsApp
+    $resultadoWhatsApp = validarWhatsApp($telefone);
+    
+    if (!$resultadoWhatsApp['sucesso']) {
+        echo json_encode(['status' => 'erro', 'mensagem' => 'Não foi possível validar o número de WhatsApp. Tente novamente.']);
+        exit;
+    }
+    
+    if (!$resultadoWhatsApp['hasWhatsApp']) {
+        echo json_encode(['status' => 'erro', 'mensagem' => 'O telefone informado não possui WhatsApp ativo. Por favor, informe um número com WhatsApp.']);
+        exit;
+    }
+
+    // Validar Instagram
+    $resultadoInstagram = validarInstagram($instagram_limpo);
+    
+    if (!$resultadoInstagram['success']) {
+        echo json_encode(['status' => 'erro', 'mensagem' => 'O username do Instagram não existe. Verifique se digitou corretamente.']);
         exit;
     }
 
@@ -121,7 +190,7 @@ elseif ($acao === 'validar_sessao') {
         exit;
     }
 
-    $sessao_id = $conn->real_escape_string($data['sessao_id']);
+    $sessao_id = $data['sessao_id'];
 
     $stmt = $conn->prepare("SELECT nome, telefone, instagram, parametro_unico 
         FROM sessoes_temp WHERE id = ? AND expiracao > NOW()");
@@ -159,7 +228,7 @@ elseif ($acao === 'registrar_participacao') {
         exit;
     }
 
-    $sessao_id = $conn->real_escape_string($data['sessao_id']);
+    $sessao_id = $data['sessao_id'];
     $empresa = intval($data['empresa']);
 
     if ($empresa < 1 || $empresa > 4) {
@@ -186,9 +255,9 @@ elseif ($acao === 'registrar_participacao') {
     $instagram = $sessao['instagram'];
     $parametro_unico = $sessao['parametro_unico'];
 
-    // Define coluna dinâmica
-    $colunas = ['e1', 'e2', 'e3', 'e4'];
-    $coluna = $colunas[$empresa - 1];
+    // Define coluna dinâmica com whitelist (previne SQL injection)
+    $colunas_permitidas = ['e1', 'e2', 'e3', 'e4'];
+    $coluna = $colunas_permitidas[$empresa - 1];
 
     // Verifica se usuário já existe
     $stmt = $conn->prepare("SELECT * FROM participantes WHERE telefone = ?");
@@ -201,21 +270,50 @@ elseif ($acao === 'registrar_participacao') {
 
         $user = $existe->fetch_assoc();
 
+        // SEGURANÇA: Verificar se Instagram pertence a este telefone
+        if ($user['instagram'] !== $instagram) {
+            echo json_encode([
+                'status' => 'erro', 
+                'mensagem' => 'Este telefone já está cadastrado com outro Instagram. Use o mesmo Instagram ou outro telefone.'
+            ]);
+            exit;
+        }
+
         if ($user[$coluna] == 1) {
             echo json_encode(['status' => 'duplicado', 'mensagem' => 'Você já participou deste sorteio']);
             exit;
         }
 
-        // Atualiza participação
-        $sql = "UPDATE participantes SET $coluna = 1, instagram = ? WHERE telefone = ?";
+        // Atualiza apenas a participação (não altera Instagram)
+        // Validação: $coluna já foi validada pela whitelist acima
+        if (!in_array($coluna, ['e1', 'e2', 'e3', 'e4'])) {
+            echo json_encode(['status' => 'erro', 'mensagem' => 'Coluna inválida']);
+            exit;
+        }
+        $sql = "UPDATE participantes SET $coluna = 1 WHERE telefone = ? AND instagram = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $instagram, $telefone);
+        $stmt->bind_param("ss", $telefone, $instagram);
         $stmt->execute();
 
         echo json_encode(['status' => 'ok', 'mensagem' => 'Participação registrada']);
         exit;
     }
 
+
+    // Verificar se Instagram já existe em outro telefone
+    $stmt = $conn->prepare("SELECT telefone FROM participantes WHERE instagram = ?");
+    $stmt->bind_param("s", $instagram);
+    $stmt->execute();
+    $resultInstagram = $stmt->get_result();
+
+    if ($resultInstagram->num_rows > 0) {
+        $outroTelefone = $resultInstagram->fetch_assoc()['telefone'];
+        echo json_encode([
+            'status' => 'erro',
+            'mensagem' => 'Este Instagram já está cadastrado em outro telefone. Cada @ pode participar apenas uma vez.'
+        ]);
+        exit;
+    }
 
     // NOVO PARTICIPANTE — insere na ordem correta:
     // id, nome, telefone, e1, e2, e3, e4, criado_em, parametro_unico, instagram

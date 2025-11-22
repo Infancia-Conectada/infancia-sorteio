@@ -14,8 +14,8 @@ require_once __DIR__ . '/env.php';
  */
 function validarWhatsApp($telefone) {
     // Configurações da API
-    $baseUrl = env('WHATSAPP_API_URL', 'https://api.exemplo.com');
-    $apiKey = env('WHATSAPP_API_KEY', 'a9F3kP7q1Xv2bL6tR8mC4yN0wZ5hJ2Q');
+    $baseUrl = env('API_BASE_URL', 'https://api.exemplo.com');
+    $apiKey = env('API_KEY', 'a9F3kP7q1Xv2bL6tR8mC4yN0wZ5hJ2Q');
     
     // Endpoint da API
     $endpoint = $baseUrl . '/api/whatsapp/validate-number';

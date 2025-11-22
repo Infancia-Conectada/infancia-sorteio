@@ -333,6 +333,12 @@ input.invalid {
     color: var(--error);
 }
 
+.feedback.info {
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: var(--primary);
+}
+
 .feedback.hidden {
     display: none;
 }
@@ -390,6 +396,14 @@ input.invalid {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+}
+
+.info-text-small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 0.25rem;
+    opacity: 0.8;
 }
 
 .icon {

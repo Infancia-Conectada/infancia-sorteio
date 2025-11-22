@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnParticipar = document.getElementById('btnParticipar');
     const feedback = document.getElementById('feedback');
 
-    console.log('✓ DOM carregado e script-login.js ativo');
-
     // Gerenciamento de CSRF
     let csrfTokenCarregado = false;
 
@@ -29,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             tokenInput.value = data.token;
             csrfTokenCarregado = true;
-            console.log('✓ Token CSRF carregado para o formulário de login');
         } catch (error) {
             console.error('Erro ao carregar token CSRF:', error);
             mostrarErro('Erro ao inicializar o formulário. Recarregue a página.');
@@ -43,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const senhaInput = document.getElementById('senha');
 
     emailInput.addEventListener('blur', function() {
-        console.log('Campo email perdeu o foco, validando...');
         validarEmail();
     });
 
@@ -110,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         feedback.classList.remove('sucesso');
         feedback.classList.add('erro');
         feedback.textContent = mensagem;
-        console.error('Erro:', mensagem);
     }
 
     // Função para mostrar sucesso
@@ -119,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
         feedback.classList.remove('erro');
         feedback.classList.add('sucesso');
         feedback.textContent = mensagem;
-        console.log('Sucesso:', mensagem);
     }
 
     // Função para limpar feedback
@@ -131,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Listener do formulário
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log('Formulário de login submetido');
 
         if (!csrfTokenCarregado) {
             mostrarErro('Aguarde o carregamento do formulário antes de enviar.');
@@ -140,12 +133,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Validação básica no cliente
         if (!validarFormulario()) {
-            console.log('Validação do formulário falhou');
             mostrarErro('Por favor, preenchha todos os campos corretamente');
             return;
         }
-
-        console.log('✓ Validação passada, enviando dados...');
 
         // Desabilitar botão e mostrar carregamento
         btnParticipar.disabled = true;
@@ -155,52 +145,26 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Coletar dados do formulário
             const formData = new FormData(form);
-            
-            console.log('Dados sendo enviados (campos):');
-            for (let pair of formData.entries()) {
-                // NÃO logar senhas por segurança
-                if (pair[0] === 'senha') {
-                    console.log(pair[0] + ': [OCULTADO]');
-                } else if (pair[0] === 'csrf_token') {
-                    console.log(pair[0] + ': [TOKEN]');
-                } else {
-                    console.log(pair[0] + ':', pair[1]);
-                }
-            }
 
             // Enviar dados ao servidor
-            console.log('Enviando requisição para validar_login.php...');
             const response = await fetch('validar_login.php', {
                 method: 'POST',
                 body: formData,
                 credentials: 'same-origin'
             });
 
-            console.log('Resposta recebida com status:', response.status);
-
             const contentType = response.headers.get('content-type');
-            console.log('Content-Type da resposta:', contentType);
 
             if (!contentType || !contentType.includes('application/json')) {
                 const texto = await response.text();
-                console.error('Resposta não é JSON:', texto.substring(0, 200));
                 throw new Error('Resposta inválida do servidor');
             }
 
             const dados = await response.json();
-            console.log('Resposta JSON recebida:', dados);
 
             // Verificar resposta
             if (dados.sucesso) {
-                console.log('✓✓✓ LOGIN BEM-SUCEDIDO');
                 mostrarSucesso(dados.mensagem);
-                
-                console.log('Dados do afiliado:', {
-                    id: dados.id_afiliado,
-                    nome: dados.nome_afiliado,
-                    code: dados.code_afiliado,
-                    email: dados.email_afiliado
-                });
 
                 // Armazenar informações na sessão (opcional, já está no servidor)
                 localStorage.setItem('id_afiliado', dados.id_afiliado);
@@ -209,17 +173,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Redirecionar para o painel de afiliado após 1.5 segundos
                 setTimeout(() => {
-                    console.log('Redirecionando para painel de afiliado...');
                     window.location.href = 'painel/';
                 }, 1500);
 
             } else {
-                console.log('Login falhou:', dados.mensagem);
                 mostrarErro(dados.mensagem);
 
                 // Mostrar erros detalhados se existirem
                 if (dados.erros && Array.isArray(dados.erros)) {
-                    console.log('Erros encontrados:', dados.erros);
+                    // Erros já tratados no mostrarErro
                 }
                 await carregarCsrfToken();
             }

@@ -1,0 +1,25 @@
+# Proteção da pasta /adm/
+# Arquivo: /public_html/adm/.htaccess
+
+# Permite acesso apenas a arquivos PHP e HTML
+<FilesMatch "\.(php|html)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Bloqueia acesso a arquivos de configuração
+<FilesMatch "^(config|auth)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloqueia listagem de diretórios
+Options -Indexes
+
+# Habilita PHP (se necessário)
+AddType application/x-httpd-php .php
+
+# Redirecionamento automático para HTTPS (opcional)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Afiliados | Neumorphism Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #000;
+            border-radius: 20px;
+            box-shadow: 
+                inset 4px 4px 8px rgba(255, 255, 255, 0.03),
+                inset -4px -4px 8px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(100, 200, 255, 0.1);
+            position: relative;
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 68, 68, 0.1);
+            color: #f44;
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 68, 68, 0.3);
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 68, 68, 0.2);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
+        }
+
+        .header .subtitle {
+            color: #888;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header .info {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .refresh-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0f0;
+            animation: pulse 2s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px #0f0; }
+            50% { opacity: 0.3; box-shadow: 0 0 5px #0f0; }
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #000;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 
+                inset 3px 3px 6px rgba(255, 255, 255, 0.03),
+                inset -3px -3px 6px rgba(0, 0, 0, 0.5),
+                5px 5px 15px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            box-shadow: 
+                inset 3px 3px 6px rgba(255, 255, 255, 0.05),
+                inset -3px -3px 6px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(100, 200, 255, 0.2);
+        }
+
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(100, 200, 255, 0.6);
+        }
+
+        .stat-card .subtext {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* Afiliados Grid */
+        .afiliados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .afiliado-card {
+            background: #000;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 
+                inset 3px 3px 6px rgba(255, 255, 255, 0.03),
+                inset -3px -3px 6px rgba(0, 0, 0, 0.5),
+                5px 5px 15px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .afiliado-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .afiliado-card:hover {
+            box-shadow: 
+                inset 3px 3px 6px rgba(255, 255, 255, 0.05),
+                inset -3px -3px 6px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(100, 200, 255, 0.2);
+        }
+
+        .afiliado-card:hover::before {
+            opacity: 1;
+        }
+
+        .afiliado-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .afiliado-nome {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .afiliado-badge {
+            background: rgba(100, 200, 255, 0.1);
+            color: rgba(100, 200, 255, 0.9);
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: inset 0 0 10px rgba(100, 200, 255, 0.2);
+        }
+
+        .afiliado-badge.inativo {
+            background: rgba(128, 128, 128, 0.1);
+            color: rgba(128, 128, 128, 0.6);
+            box-shadow: inset 0 0 10px rgba(128, 128, 128, 0.1);
+        }
+
+        .afiliado-info {
+            margin: 15px 0;
+        }
+
+        .afiliado-info-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .afiliado-info-item svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            opacity: 0.6;
+        }
+
+        .afiliado-code {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            color: #fff;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .afiliado-total {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .afiliado-total-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .afiliado-total-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(100, 200, 255, 0.7);
+        }
+
+        .afiliado-total-value.zero {
+            color: #666;
+            text-shadow: none;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: rgba(100, 200, 255, 0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #f44;
+            background: rgba(255, 68, 68, 0.05);
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .error-state svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .afiliados-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card .value {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header fade-in">
+            <a href="logout.php" class="logout-btn">Sair</a>
+            <h1>DASHBOARD AFILIADOS</h1>
+            <p class="subtitle">Sistema de Monitoramento em Tempo Real</p>
+            <p class="info">
+                Apenas participantes que completaram as 4 empresas
+                <span class="refresh-indicator"></span>
+            </p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card fade-in">
+                <div class="label">Total Afiliados</div>
+                <div class="value" id="totalAfiliados">-</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="label">Afiliados Ativos</div>
+                <div class="value" id="afiliadosAtivos">-</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="label">Cadastros Completos</div>
+                <div class="value" id="totalCompletos">-</div>
+                <div class="subtext">4 empresas concluídas</div>
+            </div>
+        </div>
+
+        <!-- Afiliados Grid -->
+        <div class="afiliados-grid" id="afiliadosGrid">
+            <div class="loading">Carregando dados do banco...</div>
+        </div>
+    </div>
+
+    <script>
+        // Configuração
+        const API_URL = 'api.php';
+        const REFRESH_INTERVAL = 10000; // 5 segundos
+        let ultimaAtualizacao = null;
+        let tentativas = 0;
+        const MAX_TENTATIVAS = 3;
+
+        // Função para buscar dados
+        async function buscarDados() {
+            try {
+                console.log('Buscando dados da API...');
+                const response = await fetch(`${API_URL}?acao=completo&t=${Date.now()}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                console.log('Dados recebidos:', result);
+
+                if (!result.sucesso) {
+                    throw new Error(result.erro || 'Erro desconhecido ao buscar dados');
+                }
+
+                tentativas = 0; // Reset contador
+                return result;
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                tentativas++;
+                
+                if (tentativas >= MAX_TENTATIVAS) {
+                    mostrarErro(error.message);
+                }
+                
+                return null;
+            }
+        }
+
+        // Mostrar erro
+        function mostrarErro(mensagem) {
+            const grid = document.getElementById('afiliadosGrid');
+            grid.innerHTML = `
+                <div class="error-state fade-in">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <h3>Erro ao conectar ao banco de dados</h3>
+                    <p>${mensagem}</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Verifique se os arquivos config.php e api.php estão configurados corretamente.</p>
+                </div>
+            `;
+        }
+
+        // Atualizar estatísticas
+        function atualizarEstatisticas(stats) {
+            document.getElementById('totalAfiliados').textContent = stats.total_afiliados || 0;
+            document.getElementById('afiliadosAtivos').textContent = stats.afiliados_ativos || 0;
+            document.getElementById('totalCompletos').textContent = stats.total_completos || 0;
+        }
+
+        // Renderizar afiliados
+        function renderizarAfiliados(dados) {
+            const grid = document.getElementById('afiliadosGrid');
+
+            if (!dados || dados.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state fade-in">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                        </svg>
+                        <p>Nenhum afiliado cadastrado ainda</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = dados.map(afiliado => {
+                const temCadastros = afiliado.total_completos > 0;
+                const badgeClass = temCadastros ? '' : 'inativo';
+                const badgeText = temCadastros ? 'Ativo' : 'Inativo';
+                const valorClass = temCadastros ? '' : 'zero';
+                
+                return `
+                    <div class="afiliado-card fade-in">
+                        <div class="afiliado-header">
+                            <div>
+                                <div class="afiliado-nome">${afiliado.nome}</div>
+                            </div>
+                            <div class="afiliado-badge ${badgeClass}">${badgeText}</div>
+                        </div>
+
+                        <div class="afiliado-info">
+                            <div class="afiliado-info-item">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                ${afiliado.email}
+                            </div>
+                            <div class="afiliado-info-item">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                ${afiliado.telefone}
+                            </div>
+                        </div>
+
+                        <div class="afiliado-code">
+                            CÓDIGO: ${afiliado.code}
+                        </div>
+
+                        <div class="afiliado-total">
+                            <div class="afiliado-total-label">Cadastros Completos (4 Empresas)</div>
+                            <div class="afiliado-total-value ${valorClass}">${afiliado.total_completos}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Atualizar dashboard
+        async function atualizarDashboard() {
+            const dados = await buscarDados();
+
+            if (dados) {
+                atualizarEstatisticas(dados.estatisticas);
+                renderizarAfiliados(dados.dados);
+                ultimaAtualizacao = new Date();
+                console.log('✓ Dashboard atualizado:', ultimaAtualizacao.toLocaleTimeString());
+            }
+        }
+
+        // Inicializar
+        console.log('Iniciando dashboard...');
+        atualizarDashboard();
+
+        // Atualização automática
+        setInterval(atualizarDashboard, REFRESH_INTERVAL);
+
+        // Atualizar ao voltar para a aba
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                console.log('Usuário retornou à aba, atualizando...');
+                atualizarDashboard();
+            }
+        });
+    </script>
+</body>
+</html>

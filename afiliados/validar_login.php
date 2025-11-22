@@ -1,8 +1,19 @@
 <?php
-// Configurar tratamento de erros
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
+// Carregar configurações de ambiente primeiro
+require_once __DIR__ . '/../config/env.php';
+
+// Configurar tratamento de erros baseado no ambiente
+if (env('APP_ENV') === 'production') {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    ini_set('log_errors', 1);
+} else {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    ini_set('log_errors', 1);
+}
 
 header('Content-Type: application/json');
 
@@ -184,7 +195,7 @@ try {
     
     // Buscar afiliado no banco de dados por email
     registrarLog('Buscando afiliado por email: ' . $email);
-    $stmt = $conexao->prepare('SELECT id, nome, email, senha, ativo, code FROM afiliados WHERE email = ? AND ativo = 1');
+    $stmt = $conexao->prepare('SELECT id, nome, email, senha, code FROM afiliados WHERE email = ?');
     
     if (!$stmt) {
         registrarLog('❌ Erro ao preparar query de busca: ' . $conexao->error, 'ERROR');
@@ -204,7 +215,7 @@ try {
     
     // Verificar se o afiliado foi encontrado
     if ($resultado->num_rows === 0) {
-        registrarLog('⚠ Falha de login: email não encontrado ou inativo: ' . $email, 'WARNING');
+        registrarLog('⚠ Falha de login: email não encontrado: ' . $email, 'WARNING');
         registrarLog('IP da tentativa: ' . ($_SERVER['REMOTE_ADDR'] ?? 'desconhecido'), 'WARNING');
         
         http_response_code(401);

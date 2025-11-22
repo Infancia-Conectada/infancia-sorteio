@@ -1,0 +1,566 @@
+[2025-11-22 04:22:20] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:22:20] [INFO] Método: POST
+[2025-11-22 04:22:20] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:22:20] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:22:20] [INFO] Requisição POST recebida
+[2025-11-22 04:22:20] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:22:20] [INFO] Token CSRF validado
+[2025-11-22 04:22:20] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:22:20] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:22:20] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:22:20] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:22:20] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:22:20] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:22:20] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:22:20] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:22:20] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:22:20] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:22:20] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:22:31] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:22:31] [INFO] Método: POST
+[2025-11-22 04:22:31] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:22:31] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:22:31] [INFO] Requisição POST recebida
+[2025-11-22 04:22:31] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:22:31] [INFO] Token CSRF validado
+[2025-11-22 04:22:31] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:22:31] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:22:31] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:22:31] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:22:31] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:22:31] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:22:31] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:22:31] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:22:31] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:22:31] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:22:31] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:23:08] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:23:08] [INFO] Método: POST
+[2025-11-22 04:23:08] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:23:08] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:23:08] [INFO] Requisição POST recebida
+[2025-11-22 04:23:08] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:23:08] [INFO] Token CSRF validado
+[2025-11-22 04:23:08] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:23:08] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:23:08] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:23:08] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:23:08] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:23:08] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:23:08] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:23:08] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:23:08] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:23:08] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:23:08] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:23:16] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:23:16] [INFO] Método: POST
+[2025-11-22 04:23:16] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:23:16] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:23:16] [INFO] Requisição POST recebida
+[2025-11-22 04:23:16] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:23:16] [INFO] Token CSRF validado
+[2025-11-22 04:23:16] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:23:16] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:23:16] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:23:16] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:23:16] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:23:16] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:23:16] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:23:16] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:23:16] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:23:16] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:23:16] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:24:26] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:24:26] [INFO] Método: POST
+[2025-11-22 04:24:26] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:24:26] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:24:26] [INFO] Requisição POST recebida
+[2025-11-22 04:24:26] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:24:26] [INFO] Token CSRF validado
+[2025-11-22 04:24:26] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:24:26] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:24:26] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:24:26] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:24:26] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:24:26] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:24:26] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:24:26] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:24:26] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:24:26] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:24:26] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:25:35] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:25:35] [INFO] Método: POST
+[2025-11-22 04:25:35] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:25:35] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:25:35] [INFO] Requisição POST recebida
+[2025-11-22 04:25:35] [INFO] POST data: {"email":"rodrigosilva130290@gmail.com"}
+[2025-11-22 04:25:35] [INFO] Token CSRF validado
+[2025-11-22 04:25:35] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:25:35] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:25:35] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:25:35] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:25:35] [INFO] Dados recebidos: email=rodrigosilva130290@gmail.com
+[2025-11-22 04:25:35] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:25:35] [INFO] Buscando afiliado por email: rodrigosilva130290@gmail.com
+[2025-11-22 04:25:35] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:25:35] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:25:35] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:25:35] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:25:38] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:25:38] [INFO] Método: POST
+[2025-11-22 04:25:38] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:25:38] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:25:38] [INFO] Requisição POST recebida
+[2025-11-22 04:25:38] [INFO] POST data: {"email":"rodrigosilva130290@gmail.com"}
+[2025-11-22 04:25:38] [INFO] Token CSRF validado
+[2025-11-22 04:25:38] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:25:38] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:25:38] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:25:38] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:25:38] [INFO] Dados recebidos: email=rodrigosilva130290@gmail.com
+[2025-11-22 04:25:38] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:25:38] [INFO] Buscando afiliado por email: rodrigosilva130290@gmail.com
+[2025-11-22 04:25:38] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:25:38] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:25:38] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:25:38] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:29:08] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:29:08] [INFO] Método: POST
+[2025-11-22 04:29:08] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:29:08] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:29:08] [INFO] Requisição POST recebida
+[2025-11-22 04:29:08] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:29:08] [INFO] Token CSRF validado
+[2025-11-22 04:29:08] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:29:08] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:29:08] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:29:08] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:29:08] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:08] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:29:08] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:08] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:29:08] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:29:08] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:29:08] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:29:10] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:29:10] [INFO] Método: POST
+[2025-11-22 04:29:10] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:29:10] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:29:10] [INFO] Requisição POST recebida
+[2025-11-22 04:29:10] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:29:10] [INFO] Token CSRF validado
+[2025-11-22 04:29:10] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:29:10] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:29:10] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:29:10] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:29:10] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:10] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:29:10] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:10] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:29:10] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:29:10] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:29:10] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:29:11] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:29:11] [INFO] Método: POST
+[2025-11-22 04:29:11] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:29:11] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:29:11] [INFO] Requisição POST recebida
+[2025-11-22 04:29:11] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:29:11] [INFO] Token CSRF validado
+[2025-11-22 04:29:11] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:29:11] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:29:11] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:29:11] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:29:11] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:11] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:29:11] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:11] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:29:11] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:29:11] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:29:11] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:29:20] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:29:20] [INFO] Método: POST
+[2025-11-22 04:29:20] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:29:20] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:29:20] [INFO] Requisição POST recebida
+[2025-11-22 04:29:20] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:29:20] [INFO] Token CSRF validado
+[2025-11-22 04:29:20] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:29:20] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:29:20] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:29:20] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:29:20] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:20] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:29:20] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:29:20] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:29:20] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:29:20] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:29:20] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:32:29] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:32:29] [INFO] Método: POST
+[2025-11-22 04:32:29] [INFO] IP: 168.232.209.66
+[2025-11-22 04:32:29] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:29] [INFO] Requisição POST recebida
+[2025-11-22 04:32:29] [INFO] POST data: {"email":"kaique.kng@gmail.com"}
+[2025-11-22 04:32:29] [INFO] Token CSRF validado
+[2025-11-22 04:32:29] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:29] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:29] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:29] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:29] [INFO] Dados recebidos: email=kaique.kng@gmail.com
+[2025-11-22 04:32:29] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:32:29] [INFO] Buscando afiliado por email: kaique.kng@gmail.com
+[2025-11-22 04:32:29] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:32:29] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:32:29] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:32:29] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:32:33] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:32:33] [INFO] Método: POST
+[2025-11-22 04:32:33] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:32:33] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:33] [INFO] Requisição POST recebida
+[2025-11-22 04:32:33] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:32:33] [INFO] Token CSRF validado
+[2025-11-22 04:32:33] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:33] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:33] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:33] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:33] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:33] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:32:33] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:33] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:32:33] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:32:33] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:32:33] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:32:36] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:32:36] [INFO] Método: POST
+[2025-11-22 04:32:36] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:32:36] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:36] [INFO] Requisição POST recebida
+[2025-11-22 04:32:36] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:32:36] [INFO] Token CSRF validado
+[2025-11-22 04:32:36] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:36] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:36] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:36] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:36] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:36] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:32:36] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:36] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:32:36] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:32:36] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:32:36] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:32:36] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:32:36] [INFO] Método: POST
+[2025-11-22 04:32:36] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:32:36] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:36] [INFO] Requisição POST recebida
+[2025-11-22 04:32:36] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:32:36] [INFO] Token CSRF validado
+[2025-11-22 04:32:36] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:36] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:36] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:36] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:36] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:36] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:32:36] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:36] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:32:36] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:32:36] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:32:36] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:32:37] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:32:37] [INFO] Método: POST
+[2025-11-22 04:32:37] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:32:37] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:37] [INFO] Requisição POST recebida
+[2025-11-22 04:32:37] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:32:37] [INFO] Token CSRF validado
+[2025-11-22 04:32:37] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:37] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:37] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:37] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:37] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:37] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:32:37] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:37] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:32:37] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:32:37] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:32:37] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:32:37] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:32:37] [INFO] Método: POST
+[2025-11-22 04:32:37] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:32:37] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:37] [INFO] Requisição POST recebida
+[2025-11-22 04:32:37] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:32:37] [INFO] Token CSRF validado
+[2025-11-22 04:32:37] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:37] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:37] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:37] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:37] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:37] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:32:37] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:32:37] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:32:37] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:32:37] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:32:37] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:32:39] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:32:39] [INFO] Método: POST
+[2025-11-22 04:32:39] [INFO] IP: 168.232.209.66
+[2025-11-22 04:32:39] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:39] [INFO] Requisição POST recebida
+[2025-11-22 04:32:39] [INFO] POST data: {"email":"kaique.kng@gmail.com"}
+[2025-11-22 04:32:39] [INFO] Token CSRF validado
+[2025-11-22 04:32:39] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:39] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:39] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:39] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:39] [INFO] Dados recebidos: email=kaique.kng@gmail.com
+[2025-11-22 04:32:39] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:32:39] [INFO] Buscando afiliado por email: kaique.kng@gmail.com
+[2025-11-22 04:32:39] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:32:39] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:32:39] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:32:39] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:33:00] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:33:00] [INFO] Método: POST
+[2025-11-22 04:33:00] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:33:00] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:33:00] [INFO] Requisição POST recebida
+[2025-11-22 04:33:00] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:33:00] [INFO] Token CSRF validado
+[2025-11-22 04:33:00] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:33:00] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:33:00] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:33:00] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:33:00] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:33:00] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:33:00] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:33:00] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:33:00] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:33:00] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:33:00] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:38:21] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:38:21] [INFO] Método: POST
+[2025-11-22 04:38:21] [INFO] IP: 168.232.209.66
+[2025-11-22 04:38:21] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:38:21] [INFO] Requisição POST recebida
+[2025-11-22 04:38:21] [INFO] POST data: {"email":"kaique.kng@gmail.com"}
+[2025-11-22 04:38:21] [INFO] Token CSRF validado
+[2025-11-22 04:38:21] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:38:21] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:38:21] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:38:21] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:38:21] [INFO] Dados recebidos: email=kaique.kng@gmail.com
+[2025-11-22 04:38:21] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:38:21] [INFO] Buscando afiliado por email: kaique.kng@gmail.com
+[2025-11-22 04:38:21] [ERROR] EXCEÇÃO CAPTURADA: Unknown column 'ativo' in 'SELECT'
+[2025-11-22 04:38:21] [ERROR] Stack trace: #0 /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php(198): mysqli->prepare()
+#1 {main}
+[2025-11-22 04:38:21] [ERROR] Arquivo: /home/u583423626/domains/infanciaconectada.com.br/public_html/afiliados/validar_login.php:198
+[2025-11-22 04:38:21] [END] === REQUISIÇÃO FINALIZADA COM ERRO ===
+[2025-11-22 04:54:28] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:54:28] [INFO] Método: POST
+[2025-11-22 04:54:28] [INFO] IP: 168.232.209.66
+[2025-11-22 04:54:28] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:54:28] [INFO] Requisição POST recebida
+[2025-11-22 04:54:28] [INFO] POST data: {"email":"kaique.kng@gmail.com"}
+[2025-11-22 04:54:28] [INFO] Token CSRF validado
+[2025-11-22 04:54:28] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:54:28] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:54:28] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:54:28] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:54:28] [INFO] Dados recebidos: email=kaique.kng@gmail.com
+[2025-11-22 04:54:28] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:54:28] [INFO] Buscando afiliado por email: kaique.kng@gmail.com
+[2025-11-22 04:54:28] [INFO] Executando query de busca...
+[2025-11-22 04:54:28] [INFO] Query executada - Linhas encontradas: 1
+[2025-11-22 04:54:28] [INFO] Afiliado encontrado: ID=2, Nome=Kaique Covo
+[2025-11-22 04:54:28] [INFO] Verificando senha...
+[2025-11-22 04:54:29] [INFO] ✓ Senha verificada com sucesso
+[2025-11-22 04:54:29] [INFO] ✓ Autenticação bem-sucedida para: kaique.kng@gmail.com
+[2025-11-22 04:54:29] [INFO] ✓ Sessão criada - ID_SESSION: ne31hj0q5nhm9nf8emen2ecnau
+[2025-11-22 04:54:29] [SUCCESS] ✓✓✓ LOGIN BEM-SUCEDIDO: Email=kaique.kng@gmail.com, ID=2, CODE=QY0ZX4X3
+[2025-11-22 04:54:29] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:54:29] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 04:55:05] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:55:05] [INFO] Método: POST
+[2025-11-22 04:55:05] [INFO] IP: 168.232.209.66
+[2025-11-22 04:55:05] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:55:05] [INFO] Requisição POST recebida
+[2025-11-22 04:55:05] [INFO] POST data: {"email":"kaique.kng1@gmail.com"}
+[2025-11-22 04:55:05] [ERROR] Token CSRF inválido ou ausente
+[2025-11-22 04:55:07] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:55:07] [INFO] Método: POST
+[2025-11-22 04:55:07] [INFO] IP: 168.232.209.66
+[2025-11-22 04:55:07] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:55:07] [INFO] Requisição POST recebida
+[2025-11-22 04:55:07] [INFO] POST data: {"email":"kaique.kng1@gmail.com"}
+[2025-11-22 04:55:07] [INFO] Token CSRF validado
+[2025-11-22 04:55:07] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:55:07] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:55:07] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:55:07] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:55:07] [INFO] Dados recebidos: email=kaique.kng1@gmail.com
+[2025-11-22 04:55:07] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:55:07] [INFO] Buscando afiliado por email: kaique.kng1@gmail.com
+[2025-11-22 04:55:07] [INFO] Executando query de busca...
+[2025-11-22 04:55:07] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:55:07] [WARNING] ⚠ Falha de login: email não encontrado: kaique.kng1@gmail.com
+[2025-11-22 04:55:07] [WARNING] IP da tentativa: 168.232.209.66
+[2025-11-22 04:55:07] [INFO] Conexão fechada - falha de autenticação
+[2025-11-22 04:55:20] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:55:20] [INFO] Método: POST
+[2025-11-22 04:55:20] [INFO] IP: 168.232.209.66
+[2025-11-22 04:55:20] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:55:20] [INFO] Requisição POST recebida
+[2025-11-22 04:55:20] [INFO] POST data: {"email":"kaiquecovo2@gmail.com"}
+[2025-11-22 04:55:20] [INFO] Token CSRF validado
+[2025-11-22 04:55:20] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:55:20] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:55:20] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:55:20] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:55:20] [INFO] Dados recebidos: email=kaiquecovo2@gmail.com
+[2025-11-22 04:55:20] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:55:20] [INFO] Buscando afiliado por email: kaiquecovo2@gmail.com
+[2025-11-22 04:55:20] [INFO] Executando query de busca...
+[2025-11-22 04:55:20] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:55:20] [WARNING] ⚠ Falha de login: email não encontrado: kaiquecovo2@gmail.com
+[2025-11-22 04:55:20] [WARNING] IP da tentativa: 168.232.209.66
+[2025-11-22 04:55:20] [INFO] Conexão fechada - falha de autenticação
+[2025-11-22 04:56:41] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:56:41] [INFO] Método: POST
+[2025-11-22 04:56:41] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:56:41] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:56:41] [INFO] Requisição POST recebida
+[2025-11-22 04:56:41] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:56:41] [INFO] Token CSRF validado
+[2025-11-22 04:56:41] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:56:41] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:56:41] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:56:41] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:56:41] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:56:41] [INFO] ✓ Validações de formato passaram
+[2025-11-22 04:56:41] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:56:41] [INFO] Executando query de busca...
+[2025-11-22 04:56:41] [INFO] Query executada - Linhas encontradas: 1
+[2025-11-22 04:56:41] [INFO] Afiliado encontrado: ID=1, Nome=Rodrigo I SIlva
+[2025-11-22 04:56:41] [INFO] Verificando senha...
+[2025-11-22 04:56:41] [INFO] ✓ Senha verificada com sucesso
+[2025-11-22 04:56:41] [INFO] ✓ Autenticação bem-sucedida para: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:56:41] [INFO] ✓ Sessão criada - ID_SESSION: f0m71cfil58ocbu0aolvtiad74
+[2025-11-22 04:56:41] [SUCCESS] ✓✓✓ LOGIN BEM-SUCEDIDO: Email=rodrigo.codeshub25@gmail.com, ID=1, CODE=AGL4YQ43
+[2025-11-22 04:56:41] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:56:41] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 04:56:43] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 04:56:43] [INFO] Método: POST
+[2025-11-22 04:56:43] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:56:43] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:56:43] [INFO] Requisição POST recebida
+[2025-11-22 04:56:43] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 04:56:43] [ERROR] Token CSRF inválido ou ausente
+[2025-11-22 05:13:39] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 05:13:39] [INFO] Método: POST
+[2025-11-22 05:13:39] [INFO] IP: 2804:7f0:b76d:f36f:70b4:a0df:7a22:b737
+[2025-11-22 05:13:39] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 05:13:39] [INFO] Requisição POST recebida
+[2025-11-22 05:13:39] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com.com"}
+[2025-11-22 05:13:39] [INFO] Token CSRF validado
+[2025-11-22 05:13:39] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 05:13:39] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 05:13:39] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 05:13:39] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 05:13:39] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com.com
+[2025-11-22 05:13:39] [INFO] ✓ Validações de formato passaram
+[2025-11-22 05:13:39] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com.com
+[2025-11-22 05:13:39] [INFO] Executando query de busca...
+[2025-11-22 05:13:39] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 05:13:39] [WARNING] ⚠ Falha de login: email não encontrado: rodrigo.codeshub25@gmail.com.com
+[2025-11-22 05:13:39] [WARNING] IP da tentativa: 2804:7f0:b76d:f36f:70b4:a0df:7a22:b737
+[2025-11-22 05:13:39] [INFO] Conexão fechada - falha de autenticação
+[2025-11-22 05:13:41] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 05:13:41] [INFO] Método: POST
+[2025-11-22 05:13:41] [INFO] IP: 2804:7f0:b76d:f36f:70b4:a0df:7a22:b737
+[2025-11-22 05:13:41] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 05:13:41] [INFO] Requisição POST recebida
+[2025-11-22 05:13:41] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com.com"}
+[2025-11-22 05:13:41] [INFO] Token CSRF validado
+[2025-11-22 05:13:41] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 05:13:41] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 05:13:41] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 05:13:41] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 05:13:41] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com.com
+[2025-11-22 05:13:41] [INFO] ✓ Validações de formato passaram
+[2025-11-22 05:13:41] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com.com
+[2025-11-22 05:13:41] [INFO] Executando query de busca...
+[2025-11-22 05:13:41] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 05:13:41] [WARNING] ⚠ Falha de login: email não encontrado: rodrigo.codeshub25@gmail.com.com
+[2025-11-22 05:13:41] [WARNING] IP da tentativa: 2804:7f0:b76d:f36f:70b4:a0df:7a22:b737
+[2025-11-22 05:13:41] [INFO] Conexão fechada - falha de autenticação
+[2025-11-22 05:13:51] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 05:13:51] [INFO] Método: POST
+[2025-11-22 05:13:51] [INFO] IP: 2804:7f0:b76d:f36f:70b4:a0df:7a22:b737
+[2025-11-22 05:13:51] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 05:13:51] [INFO] Requisição POST recebida
+[2025-11-22 05:13:51] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 05:13:51] [INFO] Token CSRF validado
+[2025-11-22 05:13:51] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 05:13:51] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 05:13:51] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 05:13:51] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 05:13:51] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 05:13:51] [INFO] ✓ Validações de formato passaram
+[2025-11-22 05:13:51] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 05:13:51] [INFO] Executando query de busca...
+[2025-11-22 05:13:51] [INFO] Query executada - Linhas encontradas: 1
+[2025-11-22 05:13:51] [INFO] Afiliado encontrado: ID=1, Nome=Rodrigo I Silva
+[2025-11-22 05:13:51] [INFO] Verificando senha...
+[2025-11-22 05:13:51] [INFO] ✓ Senha verificada com sucesso
+[2025-11-22 05:13:51] [INFO] ✓ Autenticação bem-sucedida para: rodrigo.codeshub25@gmail.com
+[2025-11-22 05:13:51] [INFO] ✓ Sessão criada - ID_SESSION: 0u852enbtj1lvdpp5jeaen47mg
+[2025-11-22 05:13:51] [SUCCESS] ✓✓✓ LOGIN BEM-SUCEDIDO: Email=rodrigo.codeshub25@gmail.com, ID=1, CODE=08ODFN7N
+[2025-11-22 05:13:51] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 05:13:51] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 17:13:12] [START] === NOVA REQUISIÇÃO DE LOGIN INICIADA ===
+[2025-11-22 17:13:12] [INFO] Método: POST
+[2025-11-22 17:13:12] [INFO] IP: 2804:7f0:b76d:f36f:9ca8:81c8:7ed0:b812
+[2025-11-22 17:13:12] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 17:13:12] [INFO] Requisição POST recebida
+[2025-11-22 17:13:12] [INFO] POST data: {"email":"rodrigo.codeshub25@gmail.com"}
+[2025-11-22 17:13:12] [INFO] Token CSRF validado
+[2025-11-22 17:13:12] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 17:13:12] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 17:13:12] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 17:13:12] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 17:13:12] [INFO] Dados recebidos: email=rodrigo.codeshub25@gmail.com
+[2025-11-22 17:13:12] [INFO] ✓ Validações de formato passaram
+[2025-11-22 17:13:12] [INFO] Buscando afiliado por email: rodrigo.codeshub25@gmail.com
+[2025-11-22 17:13:12] [INFO] Executando query de busca...
+[2025-11-22 17:13:12] [INFO] Query executada - Linhas encontradas: 1
+[2025-11-22 17:13:12] [INFO] Afiliado encontrado: ID=1, Nome=Rodrigo I Silva
+[2025-11-22 17:13:12] [INFO] Verificando senha...
+[2025-11-22 17:13:13] [INFO] ✓ Senha verificada com sucesso
+[2025-11-22 17:13:13] [INFO] ✓ Autenticação bem-sucedida para: rodrigo.codeshub25@gmail.com
+[2025-11-22 17:13:13] [INFO] ✓ Sessão criada - ID_SESSION: 054d1s7kjl2eheec4l1c41jn31
+[2025-11-22 17:13:13] [SUCCESS] ✓✓✓ LOGIN BEM-SUCEDIDO: Email=rodrigo.codeshub25@gmail.com, ID=1, CODE=08ODFN7N
+[2025-11-22 17:13:13] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 17:13:13] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===

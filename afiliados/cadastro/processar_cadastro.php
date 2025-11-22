@@ -1,8 +1,19 @@
 <?php
-// Configurar tratamento de erros
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
+// Carregar configurações de ambiente primeiro
+require_once __DIR__ . '/../../config/env.php';
+
+// Configurar tratamento de erros baseado no ambiente
+if (env('APP_ENV') === 'production') {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    ini_set('log_errors', 1);
+} else {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    ini_set('log_errors', 1);
+}
 
 header('Content-Type: application/json');
 
@@ -230,6 +241,10 @@ try {
     
     registrarLog('Todas as validações passaram');
     
+    // Remover máscara do telefone para salvar no banco
+    $telefone_limpo = preg_replace('/\D/', '', $telefone);
+    registrarLog('Telefone sem máscara: ' . $telefone_limpo);
+    
     // Validar WhatsApp
     registrarLog('Validando se o telefone possui WhatsApp: ' . $telefone);
     $resultadoWhatsApp = validarWhatsApp($telefone);
@@ -314,7 +329,7 @@ try {
     }
     
     registrarLog('Bindando parâmetros do INSERT');
-    $stmt->bind_param('sssss', $nome, $email, $telefone, $senha_hash, $codigo_afiliado);
+    $stmt->bind_param('sssss', $nome, $email, $telefone_limpo, $senha_hash, $codigo_afiliado);
     
     registrarLog('Executando INSERT no banco...');
     if (!$stmt->execute()) {
@@ -329,6 +344,53 @@ try {
     $stmt->close();
     
     registrarLog('✓✓✓ Afiliado cadastrado com sucesso: ID=' . $id_afiliado . ', CODE=' . $codigo_afiliado . ', EMAIL=' . $email, 'SUCCESS');
+    
+    // Enviar mensagem de boas-vindas via WhatsApp
+    registrarLog('Enviando mensagem de boas-vindas via WhatsApp...');
+    try {
+        $baseUrl = env('API_BASE_URL');
+        $apiKey = env('API_KEY');
+        
+        // Telefone já está limpo (sem máscara)
+        $phoneNumberWithCountry = '55' . $telefone_limpo;
+        
+        // Construir link de afiliado
+        $affiliateLink = 'https://infanciaconectada.com.br/?ref=' . $codigo_afiliado;
+        
+        $payload = json_encode([
+            'phoneNumber' => $phoneNumberWithCountry,
+            'name' => $nome,
+            'affiliateCode' => $codigo_afiliado,
+            'affiliateLink' => $affiliateLink
+        ]);
+        
+        $ch = curl_init($baseUrl . '/api/notifications/affiliate/welcome');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'X-API-Key: ' . $apiKey
+        ]);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+        
+        if ($curlError) {
+            registrarLog('⚠ Erro ao enviar WhatsApp: ' . $curlError, 'WARNING');
+        } elseif ($httpCode !== 200) {
+            registrarLog('⚠ WhatsApp API retornou código ' . $httpCode . ': ' . $response, 'WARNING');
+        } else {
+            registrarLog('✓ Mensagem de boas-vindas enviada com sucesso');
+        }
+    } catch (Exception $whatsappError) {
+        // Não bloquear o cadastro se falhar o envio do WhatsApp
+        registrarLog('⚠ Falha ao enviar WhatsApp (não crítico): ' . $whatsappError->getMessage(), 'WARNING');
+    }
     
     // Sucesso
     http_response_code(201);

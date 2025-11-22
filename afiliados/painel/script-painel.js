@@ -120,8 +120,6 @@ function realizarLogout() {
  */
 function inicializarPainel() {
     try {
-        console.log('Inicializando painel...');
-        
         // Obter dados da sessão
         const dados = obterDadosSessao();
         
@@ -167,18 +165,14 @@ function inicializarPainel() {
                     }
                 })
                 .catch(err => {
-                    console.error('Falha ao obter estatísticas:', err);
                     animarNumero(elementos.totalCadastros, 0);
                 });
         } catch (err) {
-            console.error('Erro ao buscar estatísticas:', err);
             animarNumero(elementos.totalCadastros, 0);
         }
         
-        console.log('Painel inicializado com sucesso!');
-        
     } catch (error) {
-        console.error('Erro ao inicializar painel:', error);
+        // Erro ao inicializar painel
     } finally {
         // Esconder loading
         elementos.loadingScreen.classList.add('hidden');

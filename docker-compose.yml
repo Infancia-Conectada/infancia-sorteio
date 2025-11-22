@@ -1,6 +1,30 @@
 version: '3.8'
 
 services:
+  # Serviço MySQL
+  db:
+    image: mysql:8.0
+    container_name: infancia_mysql
+    ports:
+      - "${DB_PORT:-3307}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:-root}
+      MYSQL_DATABASE: ${DB_NAME:-infancia_db}
+      MYSQL_USER: ${DB_USER:-root}
+      MYSQL_PASSWORD: ${DB_PASS:-root}
+    command: --default-authentication-plugin=mysql_native_password --ssl=0
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    networks:
+      - afiliados_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${DB_USER:-root}", "-p${DB_PASS:-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   # Serviço PHP com Apache
   php:
     image: php:8.2-apache
@@ -12,23 +36,32 @@ services:
     environment:
       - PHP_MEMORY_LIMIT=256M
       - PHP_MAX_EXECUTION_TIME=300
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT:-3306}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - DB_NAME=${DB_NAME}
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=u583423626_infancia
       - FORCE_SECURE_COOKIES=${FORCE_SECURE_COOKIES:-false}
       - SESSION_NAME=${SESSION_NAME:-infancia_session}
       - SESSION_SAMESITE=${SESSION_SAMESITE:-Strict}
+      - API_BASE_URL=${API_BASE_URL}
+      - API_KEY=${API_KEY}
     networks:
       - afiliados_network
     restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
     command: >
       bash -c "
       docker-php-ext-install mysqli pdo pdo_mysql &&
       a2enmod rewrite &&
       apache2-foreground
       "
+
+volumes:
+  mysql_data:
+    driver: local
 
 networks:
   afiliados_network:

@@ -1,0 +1,327 @@
+[2025-11-22 04:21:10] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:21:10] [INFO] Método: POST
+[2025-11-22 04:21:10] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:21:10] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:21:10] [INFO] Requisição POST recebida
+[2025-11-22 04:21:10] [INFO] POST data: {"nome":"Rodrigo Inácio da SIlva","email":"rodrigo.codeshub25@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 04:21:10] [INFO] Token CSRF válido
+[2025-11-22 04:21:10] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:21:10] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:21:10] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:21:10] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:21:10] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:21:10] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:21:10] [INFO] Dados recebidos: nome=Rodrigo Inácio da SIlva, email=rodrigo.codeshub25@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 04:21:10] [INFO] Todas as validações passaram
+[2025-11-22 04:21:10] [INFO] Telefone sem máscara: 11910978817
+[2025-11-22 04:21:10] [INFO] Validando se o telefone possui WhatsApp: (11) 91097-8817
+[2025-11-22 04:21:10] [INFO] ✓ WhatsApp validado com sucesso: (11) 91097-8817
+[2025-11-22 04:21:10] [INFO] Verificando se email já existe: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:21:10] [INFO] Executando query de verificação de email...
+[2025-11-22 04:21:10] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:21:10] [INFO] ✓ Email disponível: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:21:10] [INFO] Gerando hash de senha com bcrypt
+[2025-11-22 04:21:10] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-22 04:21:10] [INFO] Gerando código único para o afiliado
+[2025-11-22 04:21:10] [INFO] Iniciando geração de código único
+[2025-11-22 04:21:10] [INFO] Código gerado: JB7OSAZW
+[2025-11-22 04:21:10] [INFO] ✓ Código gerado: JB7OSAZW
+[2025-11-22 04:21:10] [INFO] Preparando statement de inserção
+[2025-11-22 04:21:10] [INFO] Bindando parâmetros do INSERT
+[2025-11-22 04:21:10] [INFO] Executando INSERT no banco...
+[2025-11-22 04:21:10] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-22 04:21:10] [INFO] ID do novo afiliado: 1
+[2025-11-22 04:21:10] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=1, CODE=JB7OSAZW, EMAIL=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:21:10] [INFO] Enviando mensagem de boas-vindas via WhatsApp...
+[2025-11-22 04:21:12] [INFO] ✓ Mensagem de boas-vindas enviada com sucesso
+[2025-11-22 04:21:12] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:21:12] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 04:25:08] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:25:08] [INFO] Método: POST
+[2025-11-22 04:25:08] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:25:08] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:25:08] [INFO] Requisição POST recebida
+[2025-11-22 04:25:08] [INFO] POST data: {"nome":"Rodrigo Inácio da SIlva","email":"rodrigo.codeshub25@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 04:25:08] [INFO] Token CSRF válido
+[2025-11-22 04:25:08] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:25:08] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:25:08] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:25:08] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:25:08] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:25:08] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:25:08] [INFO] Dados recebidos: nome=Rodrigo Inácio da SIlva, email=rodrigo.codeshub25@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 04:25:08] [INFO] Todas as validações passaram
+[2025-11-22 04:25:08] [INFO] Telefone sem máscara: 11910978817
+[2025-11-22 04:25:08] [INFO] Validando se o telefone possui WhatsApp: (11) 91097-8817
+[2025-11-22 04:25:09] [INFO] ✓ WhatsApp validado com sucesso: (11) 91097-8817
+[2025-11-22 04:25:09] [INFO] Verificando se email já existe: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:25:09] [INFO] Executando query de verificação de email...
+[2025-11-22 04:25:09] [INFO] Query executada - Linhas encontradas: 1
+[2025-11-22 04:25:09] [WARNING] ⚠ Email já cadastrado: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:25:09] [INFO] Conexão fechada devido email duplicado
+[2025-11-22 04:25:20] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:25:20] [INFO] Método: POST
+[2025-11-22 04:25:20] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:25:20] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:25:20] [INFO] Requisição POST recebida
+[2025-11-22 04:25:20] [INFO] POST data: {"nome":"Rodrigo Inácio da SIlva","email":"rodrigosilva130290@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 04:25:20] [INFO] Token CSRF válido
+[2025-11-22 04:25:20] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:25:20] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:25:20] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:25:20] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:25:20] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:25:20] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:25:20] [INFO] Dados recebidos: nome=Rodrigo Inácio da SIlva, email=rodrigosilva130290@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 04:25:20] [INFO] Todas as validações passaram
+[2025-11-22 04:25:20] [INFO] Telefone sem máscara: 11910978817
+[2025-11-22 04:25:20] [INFO] Validando se o telefone possui WhatsApp: (11) 91097-8817
+[2025-11-22 04:25:20] [INFO] ✓ WhatsApp validado com sucesso: (11) 91097-8817
+[2025-11-22 04:25:20] [INFO] Verificando se email já existe: rodrigosilva130290@gmail.com
+[2025-11-22 04:25:20] [INFO] Executando query de verificação de email...
+[2025-11-22 04:25:20] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:25:20] [INFO] ✓ Email disponível: rodrigosilva130290@gmail.com
+[2025-11-22 04:25:20] [INFO] Gerando hash de senha com bcrypt
+[2025-11-22 04:25:21] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-22 04:25:21] [INFO] Gerando código único para o afiliado
+[2025-11-22 04:25:21] [INFO] Iniciando geração de código único
+[2025-11-22 04:25:21] [INFO] Código gerado: ZKPH135Z
+[2025-11-22 04:25:21] [INFO] ✓ Código gerado: ZKPH135Z
+[2025-11-22 04:25:21] [INFO] Preparando statement de inserção
+[2025-11-22 04:25:21] [INFO] Bindando parâmetros do INSERT
+[2025-11-22 04:25:21] [INFO] Executando INSERT no banco...
+[2025-11-22 04:25:21] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-22 04:25:21] [INFO] ID do novo afiliado: 2
+[2025-11-22 04:25:21] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=2, CODE=ZKPH135Z, EMAIL=rodrigosilva130290@gmail.com
+[2025-11-22 04:25:21] [INFO] Enviando mensagem de boas-vindas via WhatsApp...
+[2025-11-22 04:25:21] [INFO] ✓ Mensagem de boas-vindas enviada com sucesso
+[2025-11-22 04:25:21] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:25:21] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 04:28:51] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:28:51] [INFO] Método: POST
+[2025-11-22 04:28:51] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:28:51] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:28:51] [INFO] Requisição POST recebida
+[2025-11-22 04:28:51] [INFO] POST data: {"nome":"Rodrigo Inácio da SIlva","email":"rodrigo.codeshub25@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 04:28:51] [INFO] Token CSRF válido
+[2025-11-22 04:28:51] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:28:51] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:28:51] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:28:51] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:28:51] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:28:51] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:28:51] [INFO] Dados recebidos: nome=Rodrigo Inácio da SIlva, email=rodrigo.codeshub25@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 04:28:51] [INFO] Todas as validações passaram
+[2025-11-22 04:28:51] [INFO] Telefone sem máscara: 11910978817
+[2025-11-22 04:28:51] [INFO] Validando se o telefone possui WhatsApp: (11) 91097-8817
+[2025-11-22 04:28:52] [INFO] ✓ WhatsApp validado com sucesso: (11) 91097-8817
+[2025-11-22 04:28:52] [INFO] Verificando se email já existe: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:28:52] [INFO] Executando query de verificação de email...
+[2025-11-22 04:28:52] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:28:52] [INFO] ✓ Email disponível: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:28:52] [INFO] Gerando hash de senha com bcrypt
+[2025-11-22 04:28:52] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-22 04:28:52] [INFO] Gerando código único para o afiliado
+[2025-11-22 04:28:52] [INFO] Iniciando geração de código único
+[2025-11-22 04:28:52] [INFO] Código gerado: D0ZYG1D3
+[2025-11-22 04:28:52] [INFO] ✓ Código gerado: D0ZYG1D3
+[2025-11-22 04:28:52] [INFO] Preparando statement de inserção
+[2025-11-22 04:28:52] [INFO] Bindando parâmetros do INSERT
+[2025-11-22 04:28:52] [INFO] Executando INSERT no banco...
+[2025-11-22 04:28:52] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-22 04:28:52] [INFO] ID do novo afiliado: 1
+[2025-11-22 04:28:52] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=1, CODE=D0ZYG1D3, EMAIL=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:28:52] [INFO] Enviando mensagem de boas-vindas via WhatsApp...
+[2025-11-22 04:28:52] [INFO] ✓ Mensagem de boas-vindas enviada com sucesso
+[2025-11-22 04:28:52] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:28:52] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 04:32:04] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:32:04] [INFO] Método: POST
+[2025-11-22 04:32:04] [INFO] IP: 168.232.209.66
+[2025-11-22 04:32:04] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:32:04] [INFO] Requisição POST recebida
+[2025-11-22 04:32:04] [INFO] POST data: {"nome":"Kaique Covo","email":"kaique.kng@gmail.com","telefone":"(16) 99721-8615"}
+[2025-11-22 04:32:04] [INFO] Token CSRF válido
+[2025-11-22 04:32:04] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:32:04] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:32:04] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:32:04] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:32:04] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:32:04] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:32:04] [INFO] Dados recebidos: nome=Kaique Covo, email=kaique.kng@gmail.com, telefone=(16) 99721-8615
+[2025-11-22 04:32:04] [INFO] Todas as validações passaram
+[2025-11-22 04:32:04] [INFO] Telefone sem máscara: 16997218615
+[2025-11-22 04:32:04] [INFO] Validando se o telefone possui WhatsApp: (16) 99721-8615
+[2025-11-22 04:32:04] [INFO] ✓ WhatsApp validado com sucesso: (16) 99721-8615
+[2025-11-22 04:32:04] [INFO] Verificando se email já existe: kaique.kng@gmail.com
+[2025-11-22 04:32:04] [INFO] Executando query de verificação de email...
+[2025-11-22 04:32:04] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:32:04] [INFO] ✓ Email disponível: kaique.kng@gmail.com
+[2025-11-22 04:32:04] [INFO] Gerando hash de senha com bcrypt
+[2025-11-22 04:32:05] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-22 04:32:05] [INFO] Gerando código único para o afiliado
+[2025-11-22 04:32:05] [INFO] Iniciando geração de código único
+[2025-11-22 04:32:05] [INFO] Código gerado: 3QGIV9AY
+[2025-11-22 04:32:05] [INFO] ✓ Código gerado: 3QGIV9AY
+[2025-11-22 04:32:05] [INFO] Preparando statement de inserção
+[2025-11-22 04:32:05] [INFO] Bindando parâmetros do INSERT
+[2025-11-22 04:32:05] [INFO] Executando INSERT no banco...
+[2025-11-22 04:32:05] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-22 04:32:05] [INFO] ID do novo afiliado: 2
+[2025-11-22 04:32:05] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=2, CODE=3QGIV9AY, EMAIL=kaique.kng@gmail.com
+[2025-11-22 04:32:05] [INFO] Enviando mensagem de boas-vindas via WhatsApp...
+[2025-11-22 04:32:05] [INFO] ✓ Mensagem de boas-vindas enviada com sucesso
+[2025-11-22 04:32:05] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:32:05] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 04:40:43] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:40:43] [INFO] Método: POST
+[2025-11-22 04:40:43] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:40:43] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:40:43] [INFO] Requisição POST recebida
+[2025-11-22 04:40:43] [INFO] POST data: {"nome":"Rodrigo I. SIlva","email":"rodrigo.codeshub25@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 04:40:43] [INFO] Token CSRF válido
+[2025-11-22 04:40:43] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:40:43] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:40:43] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:40:43] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:40:43] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:40:43] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:40:43] [INFO] Dados recebidos: nome=Rodrigo I. SIlva, email=rodrigo.codeshub25@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 04:40:43] [VALIDATION] Erros de validação encontrados: Nome contém caracteres inválidos
+[2025-11-22 04:40:51] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:40:51] [INFO] Método: POST
+[2025-11-22 04:40:51] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 04:40:51] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:40:51] [INFO] Requisição POST recebida
+[2025-11-22 04:40:51] [INFO] POST data: {"nome":"Rodrigo I SIlva","email":"rodrigo.codeshub25@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 04:40:51] [INFO] Token CSRF válido
+[2025-11-22 04:40:51] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:40:51] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:40:51] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:40:51] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:40:51] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:40:51] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:40:51] [INFO] Dados recebidos: nome=Rodrigo I SIlva, email=rodrigo.codeshub25@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 04:40:51] [INFO] Todas as validações passaram
+[2025-11-22 04:40:51] [INFO] Telefone sem máscara: 11910978817
+[2025-11-22 04:40:51] [INFO] Validando se o telefone possui WhatsApp: (11) 91097-8817
+[2025-11-22 04:40:52] [INFO] ✓ WhatsApp validado com sucesso: (11) 91097-8817
+[2025-11-22 04:40:52] [INFO] Verificando se email já existe: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:40:52] [INFO] Executando query de verificação de email...
+[2025-11-22 04:40:52] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:40:52] [INFO] ✓ Email disponível: rodrigo.codeshub25@gmail.com
+[2025-11-22 04:40:52] [INFO] Gerando hash de senha com bcrypt
+[2025-11-22 04:40:52] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-22 04:40:52] [INFO] Gerando código único para o afiliado
+[2025-11-22 04:40:52] [INFO] Iniciando geração de código único
+[2025-11-22 04:40:52] [INFO] Código gerado: AGL4YQ43
+[2025-11-22 04:40:52] [INFO] ✓ Código gerado: AGL4YQ43
+[2025-11-22 04:40:52] [INFO] Preparando statement de inserção
+[2025-11-22 04:40:52] [INFO] Bindando parâmetros do INSERT
+[2025-11-22 04:40:52] [INFO] Executando INSERT no banco...
+[2025-11-22 04:40:52] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-22 04:40:52] [INFO] ID do novo afiliado: 1
+[2025-11-22 04:40:52] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=1, CODE=AGL4YQ43, EMAIL=rodrigo.codeshub25@gmail.com
+[2025-11-22 04:40:52] [INFO] Enviando mensagem de boas-vindas via WhatsApp...
+[2025-11-22 04:40:52] [INFO] ✓ Mensagem de boas-vindas enviada com sucesso
+[2025-11-22 04:40:52] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:40:52] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 04:50:46] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 04:50:46] [INFO] Método: POST
+[2025-11-22 04:50:46] [INFO] IP: 168.232.209.66
+[2025-11-22 04:50:46] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 04:50:46] [INFO] Requisição POST recebida
+[2025-11-22 04:50:46] [INFO] POST data: {"nome":"Kaique Covo","email":"kaique.kng@gmail.com","telefone":"(16) 99721-8615"}
+[2025-11-22 04:50:46] [INFO] Token CSRF válido
+[2025-11-22 04:50:46] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 04:50:46] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 04:50:46] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 04:50:46] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 04:50:46] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 04:50:46] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 04:50:46] [INFO] Dados recebidos: nome=Kaique Covo, email=kaique.kng@gmail.com, telefone=(16) 99721-8615
+[2025-11-22 04:50:46] [INFO] Todas as validações passaram
+[2025-11-22 04:50:46] [INFO] Telefone sem máscara: 16997218615
+[2025-11-22 04:50:46] [INFO] Validando se o telefone possui WhatsApp: (16) 99721-8615
+[2025-11-22 04:50:46] [INFO] ✓ WhatsApp validado com sucesso: (16) 99721-8615
+[2025-11-22 04:50:46] [INFO] Verificando se email já existe: kaique.kng@gmail.com
+[2025-11-22 04:50:46] [INFO] Executando query de verificação de email...
+[2025-11-22 04:50:46] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 04:50:46] [INFO] ✓ Email disponível: kaique.kng@gmail.com
+[2025-11-22 04:50:46] [INFO] Gerando hash de senha com bcrypt
+[2025-11-22 04:50:46] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-22 04:50:46] [INFO] Gerando código único para o afiliado
+[2025-11-22 04:50:46] [INFO] Iniciando geração de código único
+[2025-11-22 04:50:46] [INFO] Código gerado: QY0ZX4X3
+[2025-11-22 04:50:46] [INFO] ✓ Código gerado: QY0ZX4X3
+[2025-11-22 04:50:46] [INFO] Preparando statement de inserção
+[2025-11-22 04:50:46] [INFO] Bindando parâmetros do INSERT
+[2025-11-22 04:50:46] [INFO] Executando INSERT no banco...
+[2025-11-22 04:50:46] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-22 04:50:46] [INFO] ID do novo afiliado: 2
+[2025-11-22 04:50:46] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=2, CODE=QY0ZX4X3, EMAIL=kaique.kng@gmail.com
+[2025-11-22 04:50:46] [INFO] Enviando mensagem de boas-vindas via WhatsApp...
+[2025-11-22 04:50:47] [INFO] ✓ Mensagem de boas-vindas enviada com sucesso
+[2025-11-22 04:50:47] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 04:50:47] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===
+[2025-11-22 05:04:05] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 05:04:05] [INFO] Método: POST
+[2025-11-22 05:04:05] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 05:04:05] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 05:04:05] [INFO] Requisição POST recebida
+[2025-11-22 05:04:05] [INFO] POST data: {"nome":"Rodrigo I Silva","email":"rodrigo.codeshub25@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 05:04:05] [INFO] Token CSRF válido
+[2025-11-22 05:04:05] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 05:04:05] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 05:04:05] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 05:04:05] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 05:04:05] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 05:04:05] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 05:04:05] [INFO] Dados recebidos: nome=Rodrigo I Silva, email=rodrigo.codeshub25@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 05:04:05] [INFO] Todas as validações passaram
+[2025-11-22 05:04:05] [INFO] Telefone sem máscara: 11910978817
+[2025-11-22 05:04:05] [INFO] Validando se o telefone possui WhatsApp: (11) 91097-8817
+[2025-11-22 05:04:06] [INFO] ✓ WhatsApp validado com sucesso: (11) 91097-8817
+[2025-11-22 05:04:06] [INFO] Verificando se email já existe: rodrigo.codeshub25@gmail.com
+[2025-11-22 05:04:06] [INFO] Executando query de verificação de email...
+[2025-11-22 05:04:06] [INFO] Query executada - Linhas encontradas: 1
+[2025-11-22 05:04:06] [WARNING] ⚠ Email já cadastrado: rodrigo.codeshub25@gmail.com
+[2025-11-22 05:04:06] [INFO] Conexão fechada devido email duplicado
+[2025-11-22 05:05:08] [START] === NOVA REQUISIÇÃO INICIADA ===
+[2025-11-22 05:05:08] [INFO] Método: POST
+[2025-11-22 05:05:08] [INFO] IP: 2804:7f0:b76d:f36f:255b:877a:87c7:af3b
+[2025-11-22 05:05:08] [INFO] Configurações BD carregadas das variáveis de ambiente
+[2025-11-22 05:05:08] [INFO] Requisição POST recebida
+[2025-11-22 05:05:08] [INFO] POST data: {"nome":"Rodrigo I Silva","email":"rodrigo.codeshub25@gmail.com","telefone":"(11) 91097-8817"}
+[2025-11-22 05:05:08] [INFO] Token CSRF válido
+[2025-11-22 05:05:08] [INFO] Tentando conectar ao banco: u583423626_infancia@localhost:3306
+[2025-11-22 05:05:08] [DEBUG] Usuário: u583423626_user_ic
+[2025-11-22 05:05:08] [SUCCESS] ✓ Conectado ao banco com sucesso!
+[2025-11-22 05:05:08] [INFO] ✓ Charset UTF-8 definido
+[2025-11-22 05:05:08] [INFO] Verificando se tabela afiliados existe...
+[2025-11-22 05:05:08] [INFO] ✓ Tabela afiliados existe
+[2025-11-22 05:05:08] [INFO] Dados recebidos: nome=Rodrigo I Silva, email=rodrigo.codeshub25@gmail.com, telefone=(11) 91097-8817
+[2025-11-22 05:05:08] [INFO] Todas as validações passaram
+[2025-11-22 05:05:08] [INFO] Telefone sem máscara: 11910978817
+[2025-11-22 05:05:08] [INFO] Validando se o telefone possui WhatsApp: (11) 91097-8817
+[2025-11-22 05:05:08] [INFO] ✓ WhatsApp validado com sucesso: (11) 91097-8817
+[2025-11-22 05:05:08] [INFO] Verificando se email já existe: rodrigo.codeshub25@gmail.com
+[2025-11-22 05:05:08] [INFO] Executando query de verificação de email...
+[2025-11-22 05:05:08] [INFO] Query executada - Linhas encontradas: 0
+[2025-11-22 05:05:08] [INFO] ✓ Email disponível: rodrigo.codeshub25@gmail.com
+[2025-11-22 05:05:08] [INFO] Gerando hash de senha com bcrypt
+[2025-11-22 05:05:08] [INFO] ✓ Hash de senha gerado com sucesso
+[2025-11-22 05:05:08] [INFO] Gerando código único para o afiliado
+[2025-11-22 05:05:08] [INFO] Iniciando geração de código único
+[2025-11-22 05:05:08] [INFO] Código gerado: 08ODFN7N
+[2025-11-22 05:05:08] [INFO] ✓ Código gerado: 08ODFN7N
+[2025-11-22 05:05:08] [INFO] Preparando statement de inserção
+[2025-11-22 05:05:08] [INFO] Bindando parâmetros do INSERT
+[2025-11-22 05:05:08] [INFO] Executando INSERT no banco...
+[2025-11-22 05:05:08] [INFO] ✓ Inserção realizada com sucesso
+[2025-11-22 05:05:08] [INFO] ID do novo afiliado: 1
+[2025-11-22 05:05:08] [SUCCESS] ✓✓✓ Afiliado cadastrado com sucesso: ID=1, CODE=08ODFN7N, EMAIL=rodrigo.codeshub25@gmail.com
+[2025-11-22 05:05:08] [INFO] Enviando mensagem de boas-vindas via WhatsApp...
+[2025-11-22 05:05:09] [INFO] ✓ Mensagem de boas-vindas enviada com sucesso
+[2025-11-22 05:05:09] [INFO] ✓ Conexão ao banco fechada
+[2025-11-22 05:05:09] [END] === REQUISIÇÃO FINALIZADA COM SUCESSO ===

@@ -3,22 +3,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnParticipar = document.getElementById('btnParticipar');
     const feedback = document.getElementById('feedback');
 
-    console.log('✓ DOM carregado e validacao.js ativo');
-
     // Gerar CSRF token ANTES de qualquer submit
     let csrfTokenCarregado = false;
     
     fetch('gerar_csrf.php')
         .then(response => {
-            console.log('Resposta CSRF:', response.status);
             if (!response.ok) {
                 throw new Error('Erro ao buscar token CSRF');
             }
             return response.json();
         })
         .then(data => {
-            console.log('Token CSRF recebido');
-            
             // Remover token antigo se existir
             const tokenAntigo = form.querySelector('input[name="csrf_token"]');
             if (tokenAntigo) {
@@ -33,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
             form.appendChild(input);
             
             csrfTokenCarregado = true;
-            console.log('✓ Token CSRF adicionado ao formulário');
         })
         .catch(erro => {
             console.error('Erro ao gerar CSRF:', erro);
@@ -42,7 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log('Formulário submetido');
+
+        // Limpar feedback anterior
+        limparFeedback();
 
         // Verificar se CSRF foi carregado
         if (!csrfTokenCarregado) {
@@ -50,63 +46,46 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Validação básica no cliente
+        // Validação básica no cliente (aplica classes valid/invalid)
         if (!validarFormulario()) {
-            console.log('Validação do formulário falhou');
+            mostrarErro('Por favor, corrija os campos destacados.');
             return;
         }
-
-        console.log('✓ Validação básica passada');
 
         // Desabilitar botão e mostrar carregamento
         btnParticipar.disabled = true;
         btnParticipar.classList.add('loading');
-        limparFeedback();
+        feedback.className = 'feedback info';
+        feedback.textContent = '⏳ Aguarde, estamos verificando as informações...';
+        feedback.classList.remove('hidden');
 
         // Validar WhatsApp
         const telefone = document.getElementById('telefone').value;
-        console.log('Iniciando validação de WhatsApp...');
+        const inputTelefone = document.getElementById('telefone');
         
         const resultadoWhatsApp = await validarWhatsApp(telefone);
         
         if (!resultadoWhatsApp.sucesso || !resultadoWhatsApp.hasWhatsApp) {
-            console.log('✗ Telefone não possui WhatsApp');
+            inputTelefone.classList.remove('valid');
+            inputTelefone.classList.add('invalid');
+            inputTelefone.focus();
             mostrarErro(resultadoWhatsApp.mensagem || 'O telefone informado não possui WhatsApp ativo');
             btnParticipar.disabled = false;
             btnParticipar.classList.remove('loading');
             return;
         }
-        
-        console.log('✓ WhatsApp validado com sucesso');
-        console.log('✓ Validação passada, enviando dados...');
 
         try {
             // Coletar dados do formulário
             const formData = new FormData(form);
-            
-            console.log('Dados sendo enviados (campos):');
-            for (let pair of formData.entries()) {
-                // NÃO logar senhas por segurança
-                if (pair[0] === 'senha' || pair[0] === 'confirmarsenha') {
-                    console.log(pair[0] + ': [OCULTADO]');
-                } else if (pair[0] === 'csrf_token') {
-                    console.log(pair[0] + ': [TOKEN]');
-                } else {
-                    console.log(pair[0] + ':', pair[1]);
-                }
-            }
 
             // Enviar dados ao servidor
-            console.log('Enviando requisição para processar_cadastro.php...');
             const response = await fetch('processar_cadastro.php', {
                 method: 'POST',
                 body: formData
             });
 
-            console.log('Resposta recebida com status:', response.status);
-
             const contentType = response.headers.get('content-type');
-            console.log('Content-Type da resposta:', contentType);
 
             if (!contentType || !contentType.includes('application/json')) {
                 const texto = await response.text();
@@ -115,11 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const dados = await response.json();
-            console.log('Dados JSON recebidos:', dados);
 
             // Mostrar feedback
             if (response.ok && dados.sucesso) {
-                console.log('✓ Cadastro realizado com sucesso!');
                 mostrarSucesso(dados.mensagem || 'Cadastro realizado com sucesso!');
                 form.reset();
                 
@@ -157,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valido = false;
         } else {
             limparErrosCampo('nome');
+            nome.classList.add('valid');
         }
 
         // Validar email
@@ -165,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valido = false;
         } else {
             limparErrosCampo('email');
+            email.classList.add('valid');
         }
 
         // Validar telefone
@@ -173,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valido = false;
         } else {
             limparErrosCampo('telefone');
+            telefone.classList.add('valid');
         }
 
         // Validar senha
@@ -181,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valido = false;
         } else {
             limparErrosCampo('senha');
+            senha.classList.add('valid');
         }
 
         // Validar confirmação de senha
@@ -189,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valido = false;
         } else {
             limparErrosCampo('confirmarsenha');
+            confirmarsenha.classList.add('valid');
         }
 
         return valido;
@@ -210,8 +192,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const numeroLimpo = telefone.replace(/\D/g, '');
             const numeroComCodigo = '55' + numeroLimpo;
             
-            console.log('Validando WhatsApp para:', numeroComCodigo);
-            
             const response = await fetch('validar_whatsapp.php', {
                 method: 'POST',
                 headers: {
@@ -232,7 +212,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             const dados = await response.json();
-            console.log('Resposta validação WhatsApp:', dados);
             
             return dados;
         } catch (erro) {
@@ -247,15 +226,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function mostrarErrosCampo(nomeId, mensagem) {
         const elemento = document.getElementById(`${nomeId}-error`);
+        const input = document.getElementById(nomeId);
         if (elemento) {
             elemento.textContent = mensagem;
+        }
+        if (input) {
+            input.classList.add('invalid');
+            input.classList.remove('valid');
         }
     }
 
     function limparErrosCampo(nomeId) {
         const elemento = document.getElementById(`${nomeId}-error`);
+        const input = document.getElementById(nomeId);
         if (elemento) {
             elemento.textContent = '';
+        }
+        if (input) {
+            input.classList.remove('invalid');
         }
     }
 

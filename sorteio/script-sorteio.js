@@ -435,7 +435,4 @@ function inicializarPagina() {
             }, 3000);
         }
     });
-
-    console.log('Sorteio Infância Conectada carregado!');
-    console.log('Empresas cadastradas:', Object.keys(empresasData).length);
 }
