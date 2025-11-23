@@ -111,6 +111,77 @@ h1 {
 }
 
 /* ========================================
+BADGE DE PRÊMIOS
+======================================== */
+.prize-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    margin: 1rem auto 0;
+    background: linear-gradient(135deg, 
+        rgba(250, 204, 21, 0.15),
+        rgba(0, 212, 255, 0.15));
+    border: 2px solid var(--warning);
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
+                0 0 40px rgba(250, 204, 21, 0.2);
+    animation: prizeGlow 2s ease-in-out infinite;
+}
+
+.prize-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--warning);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.prize-amounts {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.prize-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.prize-rank {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.prize-value {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--warning), #ffd93d);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+@keyframes prizeGlow {
+    0%, 100% {
+        box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
+                    0 0 40px rgba(250, 204, 21, 0.2);
+    }
+    50% {
+        box-shadow: 0 8px 32px rgba(250, 204, 21, 0.4),
+                    0 0 60px rgba(250, 204, 21, 0.3);
+    }
+}
+
+/* ========================================
 FORMULÁRIO
 ======================================== */
 #cadastroForm {
@@ -174,12 +245,21 @@ input:focus {
 }
 
 input.valid {
-    border-color: var(--success);
+    border-color: var(--success) !important;
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.15) !important;
 }
 
-input.invalid {
-    border-color: var(--error);
+input.invalid,
+input.error {
+    border-color: var(--error) !important;
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.15) !important;
     animation: shake 0.3s ease;
+}
+
+input.invalid:focus,
+input.error:focus {
+    border-color: var(--error) !important;
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.25) !important;
 }
 
 /* ========================================
@@ -343,6 +423,12 @@ FEEDBACK GLOBAL
     background: rgba(255, 71, 87, 0.1);
     border: 1px solid rgba(255, 71, 87, 0.3);
     color: var(--error);
+}
+
+.feedback.info {
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: var(--primary);
 }
 
 .feedback.hidden {

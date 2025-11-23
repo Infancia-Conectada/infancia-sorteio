@@ -11,71 +11,99 @@
 
 <body>
     <main class="main-content">
+        <!-- User Header (oculto inicialmente, aparece após cadastro) -->
+        <div id="userHeader" class="user-header hidden">
+            <div class="user-header-container">
+                <div class="user-avatar">
+                    <img id="userAvatar" src="" alt="Avatar do usuário">
+                </div>
+                <div class="user-info">
+                    <h3 id="userName" class="user-name"></h3>
+                    <p id="userInstagram" class="user-instagram"></p>
+                    <p id="userPhone" class="user-phone"></p>
+                    <!-- Progress Indicator -->
+                    <div id="progressIndicator" class="progress-indicator">
+                        <div class="progress-bar-container">
+                            <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <p id="progressText" class="progress-text">0/4 empresas participadas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-container">
                 <h1 class="hero-title">Sorteio</h1>
-                
+
                 <div class="hero-logo-badge">
                     <span class="logo-brand">Infância Conectada</span>
                 </div>
-                
+
                 <div class="prize-badge">
                     <div class="prize-label">Prêmio</div>
                     <div class="prize-amount">R$ 200</div>
                 </div>
-                
-                <p class="hero-subtitle">Participe do sorteio solidário com nossas empresas parceiras e faça parte dessa causa</p>
+
+                <p class="hero-subtitle">Participe do sorteio solidário com nossas empresas parceiras e faça parte dessa
+                    causa</p>
             </div>
         </section>
 
         <!-- Empresas Section -->
-        <section class="empresas-section">
-            <div class="empresas-container">
-                <!-- Empresa 1 -->
-                <div class="empresa-card" data-empresa="1">
-                    <div class="empresa-image">
-                        <img src="../images/montreal-images/logo-montreal.jpg" alt="Logo Montreal">
-                    </div>
-                    <h3 class="empresa-nome">Montreal</h3>
-                </div>
+       <section class="empresas-section">
+    <div class="empresas-container">
 
-                <!-- Empresa 2 -->
-                <div class="empresa-card" data-empresa="2">
-                    <div class="empresa-image">
-                        <img src="../images/delmatch-images/del-1.png" alt="Logo empresa Del Match">
-                    </div>
-                    <h3 class="empresa-nome">Del Match</h3>
-                </div>
-
-                <!-- Empresa 3 -->
-                <div class="empresa-card" data-empresa="3">
-                    <div class="empresa-image">
-                        <img src="../images/stmotors-images/logo-st.png" alt="Logo empresa ST Motors">
-                    </div>
-                    <h3 class="empresa-nome">ST Motors</h3>
-                </div>
-
-                <!-- Empresa 4 -->
-                <div class="empresa-card" data-empresa="4">
-                    <div class="empresa-image">
-                        <img src="../images/logo-infancia-conectada.png" alt="Logo Infância Conectada">
-                    </div>
-                    <h3 class="empresa-nome">Infância Conectada</h3>
-                </div>
+        <!-- Empresa 1 -->
+        <div class="empresa-card" data-empresa="1">
+            <div class="empresa-image">
+                <img src="../images/delmatch-images/del-1.png" alt="Logo Del Match">
             </div>
-        </section>
+            <h3 class="empresa-nome">Del Match</h3>
+        </div>
+
+        <!-- Empresa 2 -->
+        <div class="empresa-card" data-empresa="2">
+            <div class="empresa-image">
+                <img src="../images/limar-images/limar-1.jpg" alt="Logo Limar">
+            </div>
+            <h3 class="empresa-nome">Limar Automóveis</h3>
+        </div>
+
+        <!-- Empresa 3 -->
+        <div class="empresa-card" data-empresa="3">
+            <div class="empresa-image">
+                <img src="../images/stmotors-images/logo-st.png" alt="Logo ST Motors">
+            </div>
+            <h3 class="empresa-nome">ST Motors</h3>
+        </div>
+
+        <!-- Empresa 4 -->
+        <div class="empresa-card" data-empresa="4">
+            <div class="empresa-image">
+                <img src="../images/logo-infancia-conectada.png" alt="Logo Infância Conectada">
+            </div>
+            <h3 class="empresa-nome">Infância Conectada</h3>
+        </div>
+
+    </div>
+</section>
 
         <!-- Footer Instructions -->
         <section class="footer-section">
             <div class="footer-container">
-                <p class="footer-txt">*Para participar do sorteio, clique na imagem de cada uma das marcas parceiras exibidas acima. Em seguida, toque em "Participar do Sorteio" e você será direcionado ao perfil da empresa no Instagram para segui-la.</p>
+                <p class="footer-txt">*Para participar do sorteio, clique na imagem de cada uma das marcas parceiras
+                    exibidas acima. Em seguida, toque em "Participar do Sorteio" e você será direcionado ao perfil da
+                    empresa no Instagram para segui-la.</p>
 
-                <p class="footer-txt">A participação será confirmada somente após você seguir todas as quatro marcas.</p>
-                
-                <p class="footer-txt">Quando tudo estiver concluído, uma mensagem será enviada ao seu WhatsApp confirmando sua inscrição.</p>
-                
-                 <p class="footer-txt">O dia do sorteio será na sexta-feira (28/11), em nosso perfil do instagram.</p>
+                <p class="footer-txt">A participação será confirmada somente após você seguir todas as <b>quatro</b> marcas.
+                </p>
+
+                <p class="footer-txt">Quando tudo estiver concluído, uma mensagem será enviada ao seu WhatsApp
+                    confirmando sua inscrição.</p>
+
+                <p class="footer-txt">O dia do sorteio será na sexta-feira (28/11), em nosso perfil do instagram. Acompanhe para mais detalhes.</p>
 
                 <p class="footer-txt footer-luck">Boa sorte!</p>
 
@@ -83,9 +111,10 @@
                     <p>Dúvidas pelo WhatsApp:</p>
                     <a href="https://wa.me/5516996024388" class="whatsapp-link" target="_blank">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                            <path
+                                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
                         </svg>
-                        (16) 99602-4388
+                        (16) 9 9602-4388
                     </a>
                 </div>
             </div>
@@ -97,7 +126,8 @@
         <div class="modal-container">
             <button class="modal-close" id="modalClose">
                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                 </svg>
             </button>
 
@@ -113,7 +143,8 @@
                 <!-- CTA Button -->
                 <a href="#" class="modal-cta" id="modalCta" target="_blank">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                        <path
+                            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
                     </svg>
                     Participar do Sorteio
                 </a>

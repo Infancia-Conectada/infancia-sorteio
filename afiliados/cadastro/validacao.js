@@ -90,20 +90,24 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!contentType || !contentType.includes('application/json')) {
                 const texto = await response.text();
                 console.error('Resposta não é JSON:', texto.substring(0, 200));
+                console.error('Status HTTP:', response.status);
+                console.error('Content-Type:', contentType);
                 throw new Error('Resposta inválida do servidor');
             }
 
             const dados = await response.json();
+            console.log('Resposta recebida:', { status: response.status, dados });
 
             // Mostrar feedback
-            if (response.ok && dados.sucesso) {
+            // Backend retorna HTTP 201 para sucesso (Created), não apenas 200
+            if ((response.ok || response.status === 201) && dados.sucesso) {
                 mostrarSucesso(dados.mensagem || 'Cadastro realizado com sucesso!');
                 form.reset();
                 
                 // Redirecionar após 2 segundos
                 setTimeout(() => {
-                    window.location.href = '../index.html';
-                }, 2000);
+                    window.location.href = '/afiliados';
+                }, 1000);
             } else {
                 console.error('✗ Erro na resposta:', dados);
                 mostrarErro(dados.mensagem || 'Erro ao processar cadastro');

@@ -4,27 +4,6 @@ const empresasData = {
     
     1: {
         id: 1,
-        nome: 'Montreal',
-        logo: '../images/montreal-images/logo-montreal.jpg',
-        instagram: 'https://www.instagram.com/colaboradoresmontreal/',
-        description: '<center><p style="font-size: 20px;">Vamos juntos nessa corrente do bem? <br>E aproveita pra conhecer a Montreal Araraquara – moda e casa com qualidade e preço que surpreendem!',
-        links: [
-            { type: 'website', label: 'Site Oficial', url: 'https://www.montrealmodaecasa.com.br/store/araraquara-sp-14801-120/14?srsltid=AfmBOoqlweg0JkZg_OTZck-xuric5T3FmfuOxAfcpzRb7uoxt0gPqeb_', icon: 'globe' },
-            { type: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/colaboradoresmontreal/', icon: 'instagram' },
-            { type: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/montrealmagazineararaquara/?locale=pt_BR', icon: 'facebook' },
-        ],
-        gallery: [
-            '../images/montreal-images/montreal-1.jpg',
-            '../images/montreal-images/montreal-2.jpg',
-            '../images/montreal-images/montreal-3.jpg',
-            '../images/montreal-images/montreal-4.jpg',
-            '../images/montreal-images/montreal-5.jpg',
-            '../images/montreal-images/montreal-6.jpg'
-        ]
-    },
-    
-    2: {
-        id: 2,
         nome: 'Del Match',
         logo: '../images/delmatch-images/del-1.png',
         instagram: 'https://www.instagram.com/delmatchdeliveryoficial/',
@@ -43,6 +22,27 @@ const empresasData = {
             '../images/delmatch-images/del-2.webp'
         ]
     },
+    
+    2: {
+        id: 2,
+        nome: 'Limar Veículos',
+        logo: '../images/limar-images/limar-1.jpg',
+        instagram: 'https://www.instagram.com/limarautomoveisararaquara/',
+        description: '<center><p style="font-size: 20px;">Vamos acelerar juntos nessa ideia que faz a diferença? <br>E aproveite para conhecer a Limar Automóveis, referência em qualidade, transparência e excelentes condições.',
+        links: [
+            { type: 'website', label: 'Site Oficial', url: 'https://limarautomoveis.com.br/', icon: 'globe' },
+            { type: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/limarautomoveisararaquara/', icon: 'instagram' },
+            { type: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/limarautomoveisararaquara/?locale=pt_BR', icon: 'facebook' },
+        ],
+        gallery: [
+            '../images/limar-images/limar-1.jpg',
+            '../images/limar-images/limar-2.png',
+            '../images/limar-images/limar-3.png',
+            '../images/limar-images/limar-4.png',
+            '../images/limar-images/limar-5.png',
+            '../images/limar-images/limar-6.png'
+        ]
+    }, 
     
     3: {
         id: 3,
@@ -72,16 +72,16 @@ const empresasData = {
         instagram: 'https://www.instagram.com/infancia_conectada_/',
         description: '<center><p style="font-size: 20px;">Topa fazer parte de algo que transforma vidas? <br>Conheça o Infância Conectada – um projeto que leva inclusão digital para crianças em acolhimento!',
         links: [
-            { type: 'website', label: 'Site Oficial', url: 'https://infanciaconectada.com.br', icon: 'globe' },
+            { type: 'website', label: 'Site Oficial', url: 'https://infanciaconectada.com.br/', icon: 'globe' },
             { type: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/infancia_conectada_/', icon: 'instagram' },
         ],
         gallery: [
             '../images/infancia-images/infancia-1.png',
-            '../images/infancia-images/infancia-1.png',
-            '../images/infancia-images/infancia-1.png',
-            '../images/infancia-images/infancia-1.png',
-            '../images/infancia-images/infancia-1.png',
-            '../images/infancia-images/infancia-1.png'
+            '../images/infancia-images/infancia-2.png',
+            '../images/infancia-images/infancia-3.png',
+            '../images/infancia-images/infancia-4.png',
+            '../images/infancia-images/infancia-5.png',
+            '../images/infancia-images/infancia-6.png'
         ]
     }
 };
@@ -96,6 +96,7 @@ const iconsSVG = {
 
 // Variável global para armazenar ID da sessão
 let sessaoId = null;
+let csrfToken = null; // Token CSRF para proteção contra CSRF attacks
 
 // ========================================
 // Proteção de acesso à página do sorteio
@@ -113,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Validar sessão no servidor
     try {
-        const response = await fetch("https://infanciaconectada.com.br/sorteio/registrar.php", {
+        const response = await fetch("/sorteio/registrar.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
@@ -126,8 +127,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (result.status !== 'ok') {
             alert("Sessão inválida ou expirada. Faça o cadastro novamente.");
-            window.location.href = "https://infanciaconectada.com.br";
+            window.location.href = "/";
             return;
+        }
+
+        // Exibir header do usuário com dados da sessão
+        if (result.dados) {
+            // Armazenar CSRF token
+            if (result.dados.csrf_token) {
+                csrfToken = result.dados.csrf_token;
+            }
+            mostrarHeaderUsuario(result.dados);
         }
 
         // Sessão válida, inicializa a página
@@ -135,9 +145,110 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
         console.error("Erro ao validar sessão:", error);
         alert("Erro ao validar sua sessão. Tente novamente.");
-        window.location.href = "https://infanciaconectada.com.br";
+        window.location.href = "/";
     }
 });
+
+// Função para mostrar header do usuário
+function mostrarHeaderUsuario(dados) {
+    const userHeader = document.getElementById('userHeader');
+    const userName = document.getElementById('userName');
+    const userInstagram = document.getElementById('userInstagram');
+    const userPhone = document.getElementById('userPhone');
+    const userAvatar = document.getElementById('userAvatar');
+
+    if (dados.nome) {
+        userName.textContent = dados.nome;
+    }
+
+    if (dados.instagram) {
+        // Remove @ se já vier com ele
+        const instagram = dados.instagram.startsWith('@') ? dados.instagram : '@' + dados.instagram;
+        userInstagram.textContent = instagram;
+    }
+
+    if (dados.telefone) {
+        // Telefone já vem mascarado do backend: (**) *****-1234
+        userPhone.textContent = dados.telefone;
+    }
+
+    if (dados.avatar_url) {
+        // Usar proxy para contornar CORS do Instagram
+        const proxyUrl = '/avatar-instagram.php?url=' + encodeURIComponent(dados.avatar_url);
+        userAvatar.src = proxyUrl;
+        userAvatar.alt = `Avatar de ${dados.nome || 'usuário'}`;
+        
+        // Fallback caso imagem não carregue
+        userAvatar.onerror = function() {
+            this.src = '../images/logo-infancia-conectada.png';
+            this.onerror = null; // Prevenir loop infinito
+        };
+    } else {
+        // Avatar padrão se não tiver Instagram
+        userAvatar.src = '../images/logo-infancia-conectada.png';
+        userAvatar.alt = 'Avatar padrão';
+    }
+
+    // Mostrar header
+    userHeader.classList.remove('hidden');
+    
+    // Carregar progresso do usuário
+    carregarProgresso();
+}
+
+// Função para carregar e atualizar progresso
+async function carregarProgresso() {
+    try {
+        const response = await fetch("/sorteio/registrar.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+                acao: 'obter_progresso',
+                sessao_id: sessaoId 
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'ok' && result.progresso) {
+            atualizarProgressoUI(result.progresso);
+        }
+    } catch (error) {
+        console.error("Erro ao carregar progresso:", error);
+    }
+}
+
+// Função para atualizar UI do progresso
+function atualizarProgressoUI(progresso) {
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const empresaCards = document.querySelectorAll('.empresa-card');
+    
+    // Atualizar barra de progresso
+    const percentual = (progresso.total / 4) * 100;
+    progressBar.style.width = percentual + '%';
+    
+    // Atualizar texto
+    if (progresso.completado) {
+        progressText.textContent = '✓ Todas as empresas curtidas!';
+        progressText.classList.add('completed');
+    } else {
+        progressText.textContent = `${progresso.total}/4 empresas curtidas`;
+        progressText.classList.remove('completed');
+    }
+    
+    // Marcar cards das empresas já participadas
+    empresaCards.forEach((card, index) => {
+        const empresaId = index + 1;
+        const chave = 'e' + empresaId;
+        
+        if (progresso[chave] === 1) {
+            card.classList.add('curtida');
+        } else {
+            card.classList.remove('curtida');
+        }
+    });
+}
 
 function inicializarPagina() {
     const empresaCards = document.querySelectorAll('.empresa-card');
@@ -388,19 +499,26 @@ function inicializarPagina() {
         const empresaId = parseInt(modalCta.dataset.empresa);
         const instagramUrl = modalCta.href;
 
+        // Validar CSRF token
+        if (!csrfToken) {
+            alert("Token de segurança não encontrado. Por favor, recarregue a página.");
+            return;
+        }
+
         // Desabilita o botão temporariamente
         const textoOriginal = modalCta.innerHTML;
         modalCta.style.pointerEvents = 'none';
         modalCta.style.opacity = '0.6';
 
         try {
-            const response = await fetch("https://infanciaconectada.com.br/sorteio/registrar.php", {
+            const response = await fetch("/sorteio/registrar.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     acao: 'registrar_participacao',
                     sessao_id: sessaoId,
-                    empresa: empresaId
+                    empresa: empresaId,
+                    csrf_token: csrfToken
                 })
             });
 
@@ -409,6 +527,9 @@ function inicializarPagina() {
             if (result.status === 'ok') {
                 // Abre o Instagram
                 window.open(instagramUrl, "_blank");
+                
+                // Atualizar progresso
+                await carregarProgresso();
                 
                 // Feedback visual
                 modalCta.innerHTML = `

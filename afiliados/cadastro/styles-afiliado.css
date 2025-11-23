@@ -111,6 +111,77 @@ h1 {
 }
 
 /* ========================================
+BADGE DE PRÊMIOS
+======================================== */
+.prize-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    margin: 1rem auto 0;
+    background: linear-gradient(135deg, 
+        rgba(250, 204, 21, 0.15),
+        rgba(0, 212, 255, 0.15));
+    border: 2px solid var(--warning);
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
+                0 0 40px rgba(250, 204, 21, 0.2);
+    animation: prizeGlow 2s ease-in-out infinite;
+}
+
+.prize-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--warning);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.prize-amounts {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.prize-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.prize-rank {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.prize-value {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--warning), #ffd93d);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+@keyframes prizeGlow {
+    0%, 100% {
+        box-shadow: 0 6px 24px rgba(250, 204, 21, 0.3),
+                    0 0 40px rgba(250, 204, 21, 0.2);
+    }
+    50% {
+        box-shadow: 0 8px 32px rgba(250, 204, 21, 0.4),
+                    0 0 60px rgba(250, 204, 21, 0.3);
+    }
+}
+
+/* ========================================
 FORMULÁRIO
 ======================================== */
 #cadastroForm {
@@ -259,6 +330,48 @@ BOTÃO PRINCIPAL
     border-top-color: #000;
     border-radius: 50%;
     animation: spin 0.6s linear infinite;
+}
+
+/* ========================================
+BOTÃO SECUNDÁRIO (VOLTAR)
+======================================== */
+.btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: -0.5rem;
+}
+
+.btn-secondary:hover {
+    background: var(--glass-hover);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary svg {
+    transition: var(--transition);
+}
+
+.btn-secondary:hover svg {
+    transform: translateX(-3px);
 }
 
 /* ========================================

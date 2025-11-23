@@ -102,17 +102,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função para mostrar erro
     function mostrarErro(mensagem) {
-        feedback.classList.remove('hidden');
-        feedback.classList.remove('sucesso');
-        feedback.classList.add('erro');
+        feedback.className = 'feedback error';
         feedback.textContent = mensagem;
     }
 
     // Função para mostrar sucesso
     function mostrarSucesso(mensagem) {
-        feedback.classList.remove('hidden');
-        feedback.classList.remove('erro');
-        feedback.classList.add('sucesso');
+        feedback.className = 'feedback success';
+        feedback.textContent = mensagem;
+    }
+
+    // Função para mostrar info
+    function mostrarInfo(mensagem) {
+        feedback.className = 'feedback info';
         feedback.textContent = mensagem;
     }
 
@@ -133,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Validação básica no cliente
         if (!validarFormulario()) {
-            mostrarErro('Por favor, preenchha todos os campos corretamente');
+            mostrarErro('Por favor, corrija os campos destacados.');
             return;
         }
 
@@ -164,6 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Verificar resposta
             if (dados.sucesso) {
+                // Marcar campos como válidos (borda verde)
+                emailInput.classList.remove('invalid', 'error');
+                emailInput.classList.add('valid');
+                senhaInput.classList.remove('invalid', 'error');
+                senhaInput.classList.add('valid');
+
                 mostrarSucesso(dados.mensagem);
 
                 // Armazenar informações na sessão (opcional, já está no servidor)
@@ -171,12 +179,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('nome_afiliado', dados.nome_afiliado);
                 localStorage.setItem('code_afiliado', dados.code_afiliado);
 
-                // Redirecionar para o painel de afiliado após 1.5 segundos
+                // Redirecionar para o painel de afiliado após 1 segundos
                 setTimeout(() => {
                     window.location.href = 'painel/';
-                }, 1500);
+                }, 1000);
 
             } else {
+                // Marcar campos como inválidos (borda vermelha) e dar focus
+                emailInput.classList.remove('valid');
+                emailInput.classList.add('invalid', 'error');
+                senhaInput.classList.remove('valid');
+                senhaInput.classList.add('invalid', 'error');
+                
+                // Limpar mensagens de erro individuais
+                document.getElementById('email-error').textContent = '';
+                document.getElementById('senha-error').textContent = '';
+                
+                // Dar focus no primeiro campo (email)
+                setTimeout(() => {
+                    emailInput.focus();
+                }, 100);
+
                 mostrarErro(dados.mensagem);
 
                 // Mostrar erros detalhados se existirem

@@ -1,22 +1,15 @@
 <?php
-// Carregar configurações de ambiente primeiro
+// Suprimir warnings e errors no output (apenas logar)
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
+
+// Definir cabeçalho JSON ANTES de qualquer output
+header('Content-Type: application/json; charset=utf-8');
+
+// Carregar configurações de ambiente
 require_once __DIR__ . '/../../config/env.php';
-
-// Configurar tratamento de erros baseado no ambiente
-if (env('APP_ENV') === 'production') {
-    error_reporting(E_ALL);
-    ini_set('display_errors', 0);
-    ini_set('display_startup_errors', 0);
-    ini_set('log_errors', 1);
-} else {
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    ini_set('log_errors', 1);
-}
-
-header('Content-Type: application/json');
-
 require_once __DIR__ . '/../../config/session.php';
 require_once __DIR__ . '/../../config/whatsapp.php';
 start_secure_session();
@@ -25,22 +18,23 @@ start_secure_session();
 $log_file = __DIR__ . '/logs/cadastro_' . date('Y-m-d') . '.log';
 $log_dir = __DIR__ . '/logs';
 
-// Criar diretório de logs se não existir
+// Criar diretório de logs se não existir (com supressão de erro)
 if (!is_dir($log_dir)) {
-    mkdir($log_dir, 0755, true);
+    @mkdir($log_dir, 0777, true);
 }
 
-// Função para registrar logs
+// Função para registrar logs (com supressão de erro)
 function registrarLog($mensagem, $tipo = 'INFO') {
     global $log_file;
     $timestamp = date('Y-m-d H:i:s');
     $msg = "[{$timestamp}] [{$tipo}] {$mensagem}" . PHP_EOL;
-    file_put_contents($log_file, $msg, FILE_APPEND);
+    @file_put_contents($log_file, $msg, FILE_APPEND);
 }
 
-// Capturar erros fatais
+// Capturar erros fatais e suprimir output
 set_error_handler(function($errno, $errstr, $errfile, $errline) {
     registrarLog("Erro PHP #{$errno}: {$errstr} em {$errfile}:{$errline}", 'PHP_ERROR');
+    return true; // Suprimir erro (não exibir)
 });
 
 registrarLog('=== NOVA REQUISIÇÃO INICIADA ===', 'START');
@@ -175,9 +169,9 @@ try {
         registrarLog('⚠ Tabela afiliados NÃO encontrada', 'WARNING');
     }
     
-    // Receber e sanitizar dados
-    $nome = trim($_POST['nome'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+    // Receber e sanitizar dados (prevenir XSS)
+    $nome = htmlspecialchars(trim($_POST['nome'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars(trim($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8');
     $telefone = trim($_POST['telefone'] ?? '');
     $senha = $_POST['senha'] ?? '';
     $confirmar_senha = $_POST['confirmarsenha'] ?? '';

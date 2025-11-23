@@ -20,7 +20,8 @@ const elementos = {
     btnCopiar: document.getElementById('btnCopiar'),
     btnVisitar: document.getElementById('btnVisitar'),
     btnLogout: document.getElementById('btnLogout'),
-    totalCadastros: document.getElementById('totalCadastros')
+    totalCadastros: document.getElementById('totalCadastros'),
+    listaCadastrados: document.getElementById('listaCadastrados')
 };
 
 // ========================================
@@ -64,6 +65,81 @@ function animarNumero(elemento, valorFinal) {
         }
         elemento.textContent = Math.floor(valorAtual);
     }, 16);
+}
+
+/**
+ * Renderiza a lista de cadastrados
+ */
+function renderizarCadastrados(cadastrados) {
+    if (!cadastrados || cadastrados.length === 0) {
+        elementos.listaCadastrados.innerHTML = `
+            <div class="empty-state">
+                <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <p class="empty-text">Nenhum cadastro ainda</p>
+                <p class="empty-subtext">Compartilhe seu link para começar a receber cadastros!</p>
+            </div>
+        `;
+        return;
+    }
+
+    const html = cadastrados.map((cadastrado, index) => `
+        <div class="cadastrado-item" style="animation-delay: ${index * 0.05}s">
+            <div class="cadastrado-avatar">
+                ${cadastrado.avatar_url ? 
+                    `<img src="${cadastrado.avatar_url}" alt="${cadastrado.nome}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23ccc%22%3E%3Cpath d=%22M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z%22/%3E%3C/svg%3E'">` :
+                    `<div class="avatar-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>`
+                }
+            </div>
+            <div class="cadastrado-info">
+                <p class="cadastrado-nome">${cadastrado.nome}</p>
+                <a href="https://instagram.com/${cadastrado.instagram.replace('@', '')}" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="cadastrado-instagram">
+                    ${cadastrado.instagram}
+                </a>
+            </div>
+            <div class="cadastrado-data">
+                <span class="cadastrado-data-text">${formatarData(cadastrado.criado_em)}</span>
+            </div>
+        </div>
+    `).join('');
+
+    elementos.listaCadastrados.innerHTML = html;
+}
+
+/**
+ * Formata data para exibição
+ */
+function formatarData(dataString) {
+    const data = new Date(dataString);
+    const hoje = new Date();
+    const ontem = new Date(hoje);
+    ontem.setDate(ontem.getDate() - 1);
+
+    const dataFormatada = data.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    const horaFormatada = data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+    // Se for hoje
+    if (data.toDateString() === hoje.toDateString()) {
+        return `Hoje às ${horaFormatada}`;
+    }
+    
+    // Se foi ontem
+    if (data.toDateString() === ontem.toDateString()) {
+        return `Ontem às ${horaFormatada}`;
+    }
+
+    return `${dataFormatada} às ${horaFormatada}`;
 }
 
 // ========================================
@@ -159,16 +235,24 @@ function inicializarPainel() {
                             elementos.linkAfiliado.textContent = link;
                             elementos.btnVisitar.href = link;
                         }
+
+                        // Renderizar lista de cadastrados
+                        if (data.cadastrados) {
+                            renderizarCadastrados(data.cadastrados);
+                        }
                     } else {
                         console.warn('Nenhuma estatística disponível, usando 0');
                         animarNumero(elementos.totalCadastros, 0);
+                        renderizarCadastrados([]);
                     }
                 })
                 .catch(err => {
                     animarNumero(elementos.totalCadastros, 0);
+                    renderizarCadastrados([]);
                 });
         } catch (err) {
             animarNumero(elementos.totalCadastros, 0);
+            renderizarCadastrados([]);
         }
         
     } catch (error) {

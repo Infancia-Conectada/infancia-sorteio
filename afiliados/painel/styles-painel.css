@@ -379,6 +379,193 @@ body {
 }
 
 /* ========================================
+   SEÇÃO DE CADASTRADOS
+   ======================================== */
+.section-cadastrados {
+    margin-bottom: 2rem;
+}
+
+.cadastrados-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.lista-cadastrados {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Loading state */
+.loading-cadastrados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+.spinner-small {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--glass);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+/* Empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+}
+
+.empty-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--glass-border);
+    margin-bottom: 1rem;
+}
+
+.empty-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.empty-subtext {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Item de cadastrado */
+.cadastrado-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    transition: background-color 0.2s;
+    animation: slideIn 0.3s ease-out;
+}
+
+.cadastrado-item:last-child {
+    border-bottom: none;
+}
+
+.cadastrado-item:hover {
+    background-color: var(--glass);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Avatar */
+.cadastrado-avatar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.cadastrado-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--glass-border);
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.avatar-placeholder svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Info do cadastrado */
+.cadastrado-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cadastrado-nome {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.125rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cadastrado-instagram {
+    font-size: 0.75rem;
+    color: var(--primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.2s;
+}
+
+.cadastrado-instagram:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Data */
+.cadastrado-data {
+    flex-shrink: 0;
+}
+
+.cadastrado-data-text {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* Scrollbar customizado */
+.lista-cadastrados::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lista-cadastrados::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.lista-cadastrados::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+.lista-cadastrados::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
    DICAS
    ======================================== */
 .section-tips {
@@ -573,5 +760,66 @@ body {
 @media (min-width: 1280px) {
     .header-container {
         padding: 1.25rem 1.5rem;
+    }
+}
+
+/* Responsivo - Lista de Cadastrados */
+@media (max-width: 640px) {
+    .cadastrado-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.625rem 0.75rem;
+    }
+
+    .cadastrado-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .avatar-placeholder svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .cadastrado-data {
+        width: 100%;
+        margin-left: 40px;
+    }
+
+    .cadastrado-data-text {
+        font-size: 0.625rem;
+    }
+
+    .cadastrado-nome {
+        font-size: 0.75rem;
+    }
+
+    .cadastrado-instagram {
+        font-size: 0.6875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .lista-cadastrados {
+        max-height: 400px;
+    }
+
+    .cadastrado-avatar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .avatar-placeholder svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+
+    .empty-icon {
+        width: 48px;
+        height: 48px;
     }
 }

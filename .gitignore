@@ -1,1 +1,25 @@
+# Ambiente
 .env
+
+# Build
+dist/
+
+# Logs
+*.log
+afiliados/logs/
+afiliados/cadastro/logs/
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporários
+*.tmp
+*.bak
+*~

@@ -54,6 +54,36 @@ $stmt->execute();
 $res = $stmt->get_result();
 $row = $res->fetch_assoc();
 $total = (int) ($row['total'] ?? 0);
+$stmt->close();
+
+// Buscar lista de cadastrados
+$stmt = $mysqli->prepare('
+    SELECT nome, instagram, avatar_url, criado_em 
+    FROM participantes 
+    WHERE parametro_unico = ? 
+    ORDER BY criado_em DESC 
+    LIMIT 100
+');
+
+if (!$stmt) {
+    http_response_code(500);
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro ao buscar cadastrados']);
+    exit;
+}
+
+$stmt->bind_param('s', $code);
+$stmt->execute();
+$res = $stmt->get_result();
+
+$cadastrados = [];
+while ($row = $res->fetch_assoc()) {
+    $cadastrados[] = [
+        'nome' => $row['nome'],
+        'instagram' => $row['instagram'],
+        'avatar_url' => $row['avatar_url'],
+        'criado_em' => $row['criado_em']
+    ];
+}
 
 $stmt->close();
 $mysqli->close();
@@ -62,7 +92,8 @@ echo json_encode([
     'sucesso' => true,
     'total_cadastros' => $total,
     'nome_afiliado' => $_SESSION['nome_afiliado'] ?? null,
-    'code_afiliado' => $code
+    'code_afiliado' => $code,
+    'cadastrados' => $cadastrados
 ]);
 
 ?>

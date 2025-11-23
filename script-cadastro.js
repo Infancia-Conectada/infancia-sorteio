@@ -2,8 +2,8 @@
 // CONSTANTES E CONFIGURAÇÕES
 // ========================================
 const CONFIG = {
-    API_URL: 'https://infanciaconectada.com.br/sorteio/registrar.php',
-    REDIRECT_BASE_URL: 'https://infanciaconectada.com.br/sorteio',
+    API_URL: '/sorteio/registrar.php',
+    REDIRECT_BASE_URL: '/sorteio',
     REDIRECT_DELAY: 1000,
     INSTAGRAM_MAX_LENGTH: 31,
     NOME_MIN_LENGTH: 3
@@ -345,13 +345,23 @@ class FormularioCadastro {
             const result = await this.enviarDados(valores);
 
             if (result.status === 'ok' && result.sessao_id) {
-                this.exibirFeedback("success", "Redirecionando...");
+                // Verificar se é um retorno (usuário já cadastrado com mesmo telefone e Instagram)
+                if (result.redirect) {
+                    this.exibirFeedback("success", "✓ Bem-vindo de volta! Redirecionando...");
+                } else {
+                    this.exibirFeedback("success", "Redirecionando...");
+                }
 
                 // Aguarda antes de redirecionar
                 await new Promise(resolve => setTimeout(resolve, CONFIG.REDIRECT_DELAY));
 
-                // Redireciona com ID da sessão
-                window.location.href = `${CONFIG.REDIRECT_BASE_URL}?s=${result.sessao_id}`;
+                // Redireciona com ID da sessão e CSRF token
+                const urlParams = new URLSearchParams({
+                    s: result.sessao_id
+                });
+                
+                // CSRF token será validado no backend via validar_sessao
+                window.location.href = `${CONFIG.REDIRECT_BASE_URL}?${urlParams.toString()}`;
             } else {
                 throw new Error(result.mensagem || "Erro ao criar sessão");
             }
